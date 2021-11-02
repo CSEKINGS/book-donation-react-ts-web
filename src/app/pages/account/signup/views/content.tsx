@@ -5,7 +5,7 @@ import * as Router from "react-router-dom";
 export const Content = () => (
   <Mui.CardContent>
     <Mui.Stack spacing={3}>
-      <Mui.Typography variant="h3">Sign Up</Mui.Typography>
+      <Mui.Typography variant="h4">Sign Up</Mui.Typography>
       <Mui.Typography fontSize="medium" color="text.secondary">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, iste!
       </Mui.Typography>
@@ -31,6 +31,7 @@ export const Content = () => (
           label="New password"
           placeholder="Min 8 character"
         />
+        <Mui.Box sx={{ m: 1 }} />
         <Mui.TextField
           type="password"
           variant="outlined"
@@ -43,7 +44,11 @@ export const Content = () => (
       </MuiLab.LoadingButton>
       <Mui.Typography>
         Already have an Account?{" "}
-        <Mui.Link component={Router.Link} to="../signin">
+        <Mui.Link
+          component={Router.Link}
+          to="../signin"
+          sx={{ textDecoration: "none" }}
+        >
           Sign In
         </Mui.Link>
       </Mui.Typography>
