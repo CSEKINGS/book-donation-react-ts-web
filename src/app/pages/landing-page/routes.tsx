@@ -1,8 +1,8 @@
 import * as Router from "react-router-dom";
-import * as Page from "src/app/pages";
+import * as Pages from "src/app/pages";
 
 export const Routes = () => (
   <Router.Routes>
-    <Router.Route path="/*" element={<Page.LandingSite.Main />} />
+    <Router.Route path="/*" element={<Pages.LandingSite.Main />} />
   </Router.Routes>
 );
