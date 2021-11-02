@@ -1,23 +1,27 @@
 import * as Mui from "@mui/material";
+import * as MuiIcons from "@mui/icons-material";
 import * as Router from "react-router-dom";
-import * as Assets from "src/assets";
 
 export const Main = () => (
-  <Mui.Grid container justifyContent="center" alignItems="center">
-    <Mui.Grid item xs={12} md={6} sx={{ display: { xs: "none", md: "flex" } }}>
-      <Mui.Container maxWidth="sm">
+  <Mui.Grid container justifyContent="center" alignItems="center" spacing={5}>
+    <Mui.Grid item xs={6} sx={{ display: { xs: "none", md: "flex" } }}>
+      <Mui.Container maxWidth="xs">
+        <MuiIcons.AutoAwesome color="primary" />
         <Router.Outlet />
       </Mui.Container>
     </Mui.Grid>
-    <Mui.Grid item xs={12} md={6}>
-      <Mui.CardMedia
-        component="img"
-        image={Assets.landingImages.AccountBanner}
-        height="600"
-      />
+    <Mui.Grid item xs={6} sx={{ display: { xs: "none", md: "flex" } }}>
+      <Mui.Box
+        sx={{
+          flexGrow: 1,
+          bgcolor: (theme) => theme.palette.primary.main,
+          height: "100vh",
+        }}
+      ></Mui.Box>
     </Mui.Grid>
-    <Mui.Grid item xs={12} md={6} sx={{ display: { md: "none" } }}>
-      <Mui.Container maxWidth="sm">
+    <Mui.Grid item xs={12} sx={{ display: { md: "none" } }}>
+      <Mui.Container maxWidth="xs" sx={{ my: 5 }}>
+        <MuiIcons.AutoAwesome color="primary" />
         <Router.Outlet />
       </Mui.Container>
     </Mui.Grid>
