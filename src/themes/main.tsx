@@ -2,7 +2,7 @@ import * as Mui from "@mui/material";
 import * as Themes from "src/themes";
 import React from "react";
 
-export const Main = ({ children }: Main.Props) => {
+export const Main = ({ children }: Children.Props) => {
   let theme = Mui.createTheme({ ...Themes.Global.Main() });
   return (
     <Mui.ThemeProvider theme={theme}>
@@ -12,7 +12,7 @@ export const Main = ({ children }: Main.Props) => {
   );
 };
 
-export declare namespace Main {
+export declare namespace Children {
   export interface Props {
     children?: React.ReactNode;
   }
