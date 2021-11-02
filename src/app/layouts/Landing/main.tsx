@@ -8,10 +8,17 @@ export const Main = () => (
   <Mui.Box>
     <Mui.AppBar color="secondary" elevation={1}>
       <Mui.Toolbar>
-        <MuiIcons.CollectionsBookmark color="primary" sx={{ m: 1 }} />
-        <Mui.Typography variant="h6" noWrap>
-          Book Donation
-        </Mui.Typography>
+        <Mui.Button
+          component={Router.Link}
+          to="dashboard"
+          startIcon={
+            <MuiIcons.CollectionsBookmark color="primary" sx={{ m: 1 }} />
+          }
+        >
+          <Mui.Typography variant="h6" noWrap>
+            Book Donation
+          </Mui.Typography>
+        </Mui.Button>
         <Mui.Box sx={{ flexGrow: 1 }} />
         <Mui.Stack
           direction="row"
