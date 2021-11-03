@@ -10,12 +10,12 @@ export const Main = () => (
     ))}
     <Mui.Fab
       variant="extended"
-      size="medium"
+      size="small"
       color="primary"
-      sx={{ position: "fixed", right: 10, bottom: 10 }}
+      sx={{ position: "fixed", right: 10, bottom: 10, fontSize: "small" }}
     >
       <MuiIcons.Download sx={{ mr: 1 }} />
-      Flutter
+      APK
     </Mui.Fab>
   </Mui.Grid>
 );
