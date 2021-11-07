@@ -35,11 +35,11 @@ export const Content = () => (
         <Mui.TextField
           type="password"
           variant="outlined"
-          label="Confrim password"
+          label="Confirm password"
           placeholder="Min 8 character"
         />
       </Mui.Stack>
-      <MuiLab.LoadingButton fullWidth variant="contained">
+      <MuiLab.LoadingButton fullWidth variant="contained" sx={{ height: 53 }}>
         Create new account
       </MuiLab.LoadingButton>
       <Mui.Typography>

@@ -14,7 +14,7 @@ export const Content = () => (
         label="Email"
         placeholder="Joe@mail.com"
       />
-      <MuiLab.LoadingButton fullWidth variant="contained">
+      <MuiLab.LoadingButton fullWidth variant="contained" sx={{ height: 53 }}>
         Send Reset Link
       </MuiLab.LoadingButton>
     </Mui.Stack>

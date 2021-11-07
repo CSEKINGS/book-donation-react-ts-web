@@ -17,10 +17,10 @@ export const Content = () => (
       <Mui.TextField
         type="password"
         variant="outlined"
-        label="Confrim password"
+        label="Confirm password"
         placeholder="Min. 8 Character"
       />
-      <MuiLab.LoadingButton fullWidth variant="contained">
+      <MuiLab.LoadingButton fullWidth variant="contained" sx={{ height: 53 }}>
         set password
       </MuiLab.LoadingButton>
     </Mui.Stack>

@@ -3,6 +3,6 @@ import * as Pages from "src/app/pages";
 
 export const Routes = () => (
   <Router.Routes>
-    <Router.Route path="/" element={<Pages.LandingSite.Main />} />
+    <Router.Route path="/" element={<Pages.Profile.Main />} />
   </Router.Routes>
 );

@@ -34,7 +34,7 @@ export const Content = () => (
           Forget password?
         </Mui.Link>
       </Mui.Stack>
-      <MuiLab.LoadingButton fullWidth variant="contained">
+      <MuiLab.LoadingButton fullWidth variant="contained" sx={{ height: 53 }}>
         Login
       </MuiLab.LoadingButton>
       <Mui.Typography>

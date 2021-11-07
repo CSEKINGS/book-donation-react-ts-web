@@ -3,12 +3,12 @@ import * as Mui from "@mui/material";
 export const palette = (): Pick<Mui.ThemeOptions, "palette"> => ({
   palette: {
     primary: {
-      main: "#150BD4",
-      light: "#150BD490",
+      main: "#4460f1",
+      light: "#4460f1D8",
     },
     secondary: {
-      main: "#ffffff",
-      light: "#ffffff50",
+      main: "#e9eff6",
+      light: "#e9eff6D8",
     },
   },
 });

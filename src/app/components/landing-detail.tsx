@@ -8,7 +8,7 @@ export const LandingInfo = ({ title, content, action }: landingInfo.Props) => (
       <Mui.Box
         sx={{
           flexGrow: 1,
-          height: { xs: 350, md: 600 },
+          height: { xs: 350, sm: 600 },
         }}
       ></Mui.Box>
     </Mui.Grid>
@@ -31,7 +31,7 @@ export const LandingInfo = ({ title, content, action }: landingInfo.Props) => (
         </Mui.Button>
       </Mui.Stack>
     </Mui.Grid>
-    <Mui.Grid item xs={12} md={3} sx={{ display: { xs: "none", md: "flex" } }}>
+    <Mui.Grid item xs={12} md={3} sx={{ display: { xs: "none", sm: "flex" } }}>
       <Mui.Box
         sx={{
           flexGrow: 1,
