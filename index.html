@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Donation</title>
+    <style>
+        .logo {
+            font-family: Madefor, "Helvetica Neue", Helvetica, Arial, "meiryo", "hiragino kaku gothic pro", sans-serif;
+            font-size: xx-large;
+            font-weight: bolder;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #4460f1;
+            background: linear-gradient(90deg, #4460f1, blueviolet, #4460f1);
+            background-repeat: no-repeat;
+            background-size: 80%;
+            animation: animate 2s linear infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgba(255, 255, 255, 0);
+        }
+        
+        @keyframes animate {
+            0% {
+                background-position: -500%;
+            }
+            100% {
+                background-position: 500%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <span class="logo">BOOK DONATION</span>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>
