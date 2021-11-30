@@ -5,7 +5,6 @@ import * as Formik from "formik";
 import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Api from "src/api";
-import * as React from "react";
 
 const SignInValidation = Yup.object().shape({
   email: Yup.string().required("No email provided").email("Invalid Email"),
@@ -16,30 +15,34 @@ const SignInValidation = Yup.object().shape({
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
       "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
     ),
-  remember: Yup.boolean(),
 });
 
 export const Main = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
 
-  const onSubmit = (values: main.Form) => {
+  const onSubmit = (
+    values: main.Form,
+    formikHelpers: Formik.FormikHelpers<main.Form>
+  ) => {
     Api.Server.Request("signin", values)
       .then((res) => {
         localStorage.setItem("bdtoken", res.token);
         enqueueSnackbar("Login Successfull!", { variant: "success" });
         customNavigate("/");
+        formikHelpers.setSubmitting(false);
       })
-      .catch((err) =>
+      .catch((err) => {
         enqueueSnackbar(`Error: ${err.message}`, {
           variant: "error",
-        })
-      );
+        });
+        formikHelpers.setSubmitting(false);
+      });
   };
 
   return (
     <Formik.Formik
-      initialValues={{ email: "", password: "", remember: false }}
+      initialValues={{ email: "", password: "" }}
       validationSchema={SignInValidation}
       onSubmit={onSubmit}
     >
@@ -56,6 +59,5 @@ export declare namespace main {
   export interface Form {
     email: string;
     password: string;
-    remember: boolean;
   }
 }

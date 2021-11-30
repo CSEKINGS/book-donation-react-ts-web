@@ -14,7 +14,6 @@ export const useLocation = () => {
               position.coords.latitude,
               position.coords.longitude,
             ];
-            console.log(location);
             callback(location);
           },
           (err) =>

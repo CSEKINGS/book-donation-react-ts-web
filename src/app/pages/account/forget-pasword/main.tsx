@@ -17,7 +17,6 @@ export const Main = () => {
     values: main.Form,
     formikHelpers: Formik.FormikHelpers<main.Form>
   ) => {
-    console.log(values);
     enqueueSnackbar(`Password reset link sent to ${values.email}!`, {
       variant: "success",
     });

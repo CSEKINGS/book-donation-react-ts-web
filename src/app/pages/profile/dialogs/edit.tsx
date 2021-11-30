@@ -5,8 +5,8 @@ import * as Formik from "formik";
 import * as Router from "react-router-dom";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
-import * as React from "react";
 import * as Yup from "yup";
+import * as Api from "src/api";
 
 const additional = Yup.object().shape({
   location: Yup.boolean(),
@@ -15,7 +15,7 @@ const additional = Yup.object().shape({
 export const UserEdit = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
-  const { location } = React.useContext(Pages.Search.Hooks.Search);
+  const { locator } = Hooks.useLocation();
 
   const {
     state: { user },
@@ -27,34 +27,35 @@ export const UserEdit = () => {
       Exclude<Pages.Account.SignUp.main.Form, "confirmPassword">
     >
   ) => {
-    console.log(values, location);
-    const callback = () => {
-      formikHelpers.setSubmitting(false);
-      enqueueSnackbar("Your profile updated successfully!", {
-        variant: "success",
-      });
-      customNavigate(-1);
+    const { profile, name, about, email, password, mobileNo, address } = values;
+    const callback = (location: number[]) => {
+      Api.Server.Request("userEdit", {
+        photo: profile,
+        name,
+        about,
+        email,
+        mobileNo,
+        address,
+        location,
+        password,
+      })
+        .then((res) => {
+          enqueueSnackbar("Your profile updated successfully!", {
+            variant: "success",
+          });
+          customNavigate(-1);
+          formikHelpers.setSubmitting(false);
+        })
+        .catch((err) => {
+          enqueueSnackbar(`Error: ${err.message}`, {
+            variant: "error",
+          });
+          formikHelpers.setSubmitting(false);
+        });
     };
-    values.location
-      ? location
-        ? callback()
-        : navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const location = [
-                position.coords.latitude,
-                position.coords.longitude,
-              ];
-              console.log(location);
-              callback();
-            },
-            (err) =>
-              enqueueSnackbar(
-                "Please allow to confirm your location for best experinece",
-                { variant: "error" }
-              )
-          )
-      : callback();
+    values.location ? locator(callback) : callback(user.location);
   };
+
   return (
     <Components.Dialog
       open={true}
@@ -69,9 +70,10 @@ export const UserEdit = () => {
           )}
           onSubmit={onSubmit}
         >
-          {({ values: { profile }, errors }) => (
+          {({ values: { profile }, errors, isSubmitting }) => (
             <Mui.Box component={Formik.Form}>
               <Mui.CardContent component={Mui.Stack}>
+                {isSubmitting && <Mui.LinearProgress />}
                 <Mui.Stack direction="row" justifyContent="space-between">
                   <Mui.Stack>
                     <Components.FormField

@@ -50,7 +50,6 @@ export const Main = () => {
             <Mui.Typography
               variant="h6"
               noWrap
-              sx={{ display: { xs: "none", md: "block" } }}
             >
               Book Donation
             </Mui.Typography>

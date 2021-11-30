@@ -3,6 +3,7 @@ import * as Components from "src/app/components";
 import * as Router from "react-router-dom";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Api from "src/api";
 
 export const Delete = () => {
   const { customNavigate } = Hooks.useNavigate();
@@ -15,11 +16,19 @@ export const Delete = () => {
   } = Router.useLocation();
 
   const handleDelete = () => {
-    localStorage.setItem("signin", "false");
-    enqueueSnackbar("Your account deleted successfully!", {
-      variant: "success",
-    });
-    customNavigate(-1);
+    Api.Server.Request("userDelete")
+      .then((res) => {
+        localStorage.setItem("bdtoken", "");
+        enqueueSnackbar("Your account deleted successfully!", {
+          variant: "success",
+        });
+        customNavigate("/");
+      })
+      .catch((err) =>
+        enqueueSnackbar(`Error: ${err.message}`, {
+          variant: "error",
+        })
+      );
   };
 
   return (

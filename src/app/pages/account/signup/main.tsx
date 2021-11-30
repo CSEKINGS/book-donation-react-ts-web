@@ -38,7 +38,10 @@ export const Main = () => {
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { locator } = Hooks.useLocation();
 
-  const onSubmit = (values: Exclude<main.Form, "location">) => {
+  const onSubmit = (
+    values: Exclude<main.Form, "location">,
+    formikHelpers: Formik.FormikHelpers<Exclude<main.Form, "location">>
+  ) => {
     const { profile, name, about, email, password, mobileNo, address } = values;
     const callback = async (location: number[]) => {
       Api.Server.Request("signup", {
@@ -57,12 +60,14 @@ export const Main = () => {
             variant: "success",
           });
           customNavigate("../../dashboard");
+          formikHelpers.setSubmitting(false);
         })
-        .catch((err) =>
+        .catch((err) => {
           enqueueSnackbar(`Error: ${err.message}`, {
             variant: "error",
-          })
-        );
+          });
+          formikHelpers.setSubmitting(false);
+        });
     };
 
     locator(callback);

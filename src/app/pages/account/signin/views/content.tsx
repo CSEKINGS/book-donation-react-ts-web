@@ -23,10 +23,9 @@ export const Content = () => (
       />
       <Mui.Stack
         direction="row"
-        justifyContent="space-between"
+        justifyContent="flex-end"
         alignItems="center"
       >
-        <Components.CheckBox name="remember" label="remember" />
         <Mui.Link
           component={Router.Link}
           to="../forget"
