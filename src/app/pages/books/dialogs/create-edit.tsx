@@ -11,8 +11,8 @@ import * as React from "react";
 import * as Api from "src/api";
 
 const BookValidation = Yup.object().shape({
-  image: Yup.string().required("No book image provided"),
-  title: Yup.string().required("No book name provided").trim(),
+  photo: Yup.string().required("No book image provided"),
+  name: Yup.string().required("No book name provided").trim(),
   description: Yup.string().trim(),
   author: Yup.string().required("No auhtor name provided").trim(),
   categeory: Yup.string().required("No categeory provided").trim(),
@@ -35,18 +35,22 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
     formikHelpers: Formik.FormikHelpers<Pages.Books.Views.bookCard.book>
   ) => {
     const callback = (location: number[]) => {
-      const { title, image } = values;
-      Api.Server.Request("createBook", {
-        ...values,
-        name: title,
-        photo: image,
-        location,
-      })
+      (variant === "create"
+        ? Api.Server.Request("createBook", {
+            ...values,
+            location,
+          })
+        : Api.Server.Request("bookEdit", {
+            ...values,
+            bookId: book?._id,
+            location,
+          })
+      )
         .then((res) => {
           enqueueSnackbar(
             variant === "create"
-              ? `${values.title} book was created`
-              : `${book.title} book info updated!`,
+              ? `${values.name} book was created`
+              : `${book.name} book info updated!`,
             {
               variant: "success",
             }
@@ -78,37 +82,36 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
             variant !== "create"
               ? { ...book, setlocation: false }
               : {
-                  id: "",
-                  title: "",
+                  name: "",
                   description: "",
                   author: "",
                   categeory: "",
                   quantity: 1,
-                  time: "",
-                  image: "",
+                  photo: "",
                   setlocation: false,
                 }
           }
           validationSchema={BookValidation}
           onSubmit={onSubmit}
         >
-          {({ values, errors, touched }) => (
+          {({ values, errors, touched, isSubmitting }) => (
             <Mui.Box component={Formik.Form}>
+              {isSubmitting && <Mui.LinearProgress />}
               <Mui.Stack alignItems="center">
                 <Components.Profiler
-                  name="image"
-                  src={values.image}
+                  name="photo"
+                  src={values.photo}
                   width="100%"
                   sx={{
                     height: { xs: 200, md: 150 },
                     width: "inherit",
                   }}
-                  error={touched.image ? (errors.image as string) : undefined}
+                  error={touched.photo ? (errors.photo as string) : undefined}
                 >
                   <MuiIcons.AddAPhoto fontSize="large" />
                 </Components.Profiler>
                 <Components.FormField
-                  name="title"
+                  name="name"
                   label="Book Name"
                   placeholder="C, C++"
                 />

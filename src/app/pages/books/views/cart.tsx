@@ -4,7 +4,7 @@ import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
 
 export const Cart = () => {
-  const books = Hooks.useGetBooks();
+  const { books, loading } = Hooks.useGetBooks();
   return (
     <>
       <Mui.Grid container>
@@ -13,7 +13,7 @@ export const Cart = () => {
             My Cart
           </Mui.Typography>
         </Mui.Grid>
-        {books.map((book, index) => (
+        {books?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="cart" />
           </Mui.Grid>

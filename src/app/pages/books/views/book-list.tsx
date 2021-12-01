@@ -34,7 +34,7 @@ export const BookList = ({ title, books, chart, role }: bookList.Props) => (
         </Mui.Typography>
       </Mui.Grid>
     )}
-    {books.map((book, index) => (
+    {books?.map((book, index) => (
       <Mui.Grid item xs key={index}>
         <Pages.Books.Views.BookCard bookInfo={book} role={role} />
       </Mui.Grid>

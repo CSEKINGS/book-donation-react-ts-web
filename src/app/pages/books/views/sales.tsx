@@ -6,7 +6,7 @@ import * as Hooks from "src/app/hooks";
 
 export const Sales = () => {
   const { customNavigate } = Hooks.useNavigate();
-  const books = Hooks.useGetBooks();
+  const { books, loading } = Hooks.useGetBooks();
   return (
     <>
       <Mui.Grid container>
@@ -28,7 +28,7 @@ export const Sales = () => {
             Create
           </Mui.Button>
         </Mui.Grid>
-        {books.map((book, index) => (
+        {books?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="mine" />
           </Mui.Grid>

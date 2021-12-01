@@ -2,7 +2,7 @@ import * as Mui from "@mui/material";
 import * as Hooks from "src/app/hooks";
 
 export const BookCard = ({
-  bookInfo: { id, image, title, description, time },
+  bookInfo: { _id, photo, name, description, uploadDate },
   role,
 }: bookCard.Props) => {
   const { customNavigate } = Hooks.useNavigate();
@@ -16,21 +16,21 @@ export const BookCard = ({
     >
       <Mui.CardActionArea
         onClick={() => {
-          customNavigate(`/books/${id}`, { state: { role } });
+          customNavigate(`/books/${_id}`, { state: { role } });
         }}
       >
         <Mui.CardContent>
           <Mui.Typography variant="body1" color="primary" align="center" noWrap>
-            {title}
+            {name}
           </Mui.Typography>
-          <Mui.CardMedia component="img" image={image} />
+          <Mui.CardMedia component="img" image={photo} sx={{ height: 100 }} />
           <Mui.Typography
             variant="caption"
             color="text.secondary"
             textAlign="right"
             display="flow-root list-item"
           >
-            {time}
+            {new Date(uploadDate).toLocaleDateString()}
           </Mui.Typography>
           <Mui.Typography
             variant="subtitle1"
@@ -51,13 +51,13 @@ export declare namespace bookCard {
     role: bookRole.Roles;
   }
   export interface book {
-    id: string;
-    title: string;
+    _id: string;
+    name: string;
     description: string;
-    image: string;
-    time: string;
+    photo: string;
+    uploadDate: string;
     author: string;
     categeory: string;
-    location: boolean;
+    location: number[];
   }
 }

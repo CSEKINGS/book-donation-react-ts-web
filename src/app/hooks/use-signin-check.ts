@@ -1,15 +1,14 @@
-import * as Faker from "faker";
 import * as Api from "src/api";
 
 export const useSignInCheck = (): profile.Type => {
-  const response = Api.Server.useRequest(
+  const { data } = Api.Server.useRequest(
     ["user", localStorage.getItem("bdtoken") || ""],
     "user"
   );
-  delete response?.data?.userLog;
+  delete data?.userLog;
   return {
-    user: response.data
-      ? { signin: true, profile: response?.data?.photo, ...response.data }
+    user: data
+      ? { signin: true, profile: data?.photo, ...data }
       : { signin: false },
   };
 };

@@ -3,6 +3,7 @@ import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Api from "src/api";
 
 export const Delete = () => {
   const { customNavigate } = Hooks.useNavigate();
@@ -10,15 +11,23 @@ export const Delete = () => {
 
   const {
     state: {
-      book: { title, image },
+      book: { _id, name, photo },
     },
   } = Router.useLocation();
 
   const handleDelete = () => {
-    enqueueSnackbar(`Your ${title} book deleted successfully!`, {
-      variant: "success",
-    });
-    customNavigate(-1);
+    Api.Server.Request("bookDelete", { bookId: _id })
+      .then((res) => {
+        enqueueSnackbar(`Your ${name} book deleted successfully!`, {
+          variant: "success",
+        });
+        customNavigate(-2);
+      })
+      .catch((err) =>
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
+          variant: "error",
+        })
+      );
   };
 
   return (
@@ -34,10 +43,10 @@ export const Delete = () => {
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"
-            src={image}
+            src={photo}
             sx={{ height: { xs: 200, md: 150 }, width: "100%" }}
           />
-          <Mui.Typography variant="h6">{title}</Mui.Typography>
+          <Mui.Typography variant="h6">{name}</Mui.Typography>
           <Mui.Typography
             variant="body1"
             textAlign="center"
@@ -47,7 +56,7 @@ export const Delete = () => {
               p: 5,
             }}
           >
-            Are you sure, Do you want to delete this <b>{title}</b> Book?
+            Are you sure, Do you want to delete this <b>{name}</b> Book?
           </Mui.Typography>
         </Mui.Stack>
       </Mui.DialogContent>

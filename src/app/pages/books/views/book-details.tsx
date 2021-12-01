@@ -11,8 +11,8 @@ import copy from "copy-to-clipboard";
 export const BookDetails = () => {
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { customNavigate } = Hooks.useNavigate();
-  const { book } = Hooks.useGetBooksByID();
-  const books = Hooks.useGetBooks().slice(0, 6);
+  const { book, loading } = Hooks.useGetBooksByID();
+  const { books } = Hooks.useGetBooks();
   const {
     state: { role },
   } = Router.useLocation();
@@ -24,13 +24,13 @@ export const BookDetails = () => {
   };
   return (
     <>
-      <Components.Dialog open={true} title={book.title} fullScreen>
+      <Components.Dialog open={true} title={book?.name} fullScreen>
         <Mui.DialogContent>
           <Mui.Stack justifyContent="center">
             <Mui.Box sx={{ position: "relative" }}>
               <Mui.CardMedia
                 component="img"
-                image={book.image}
+                image={book?.photo}
                 sx={{ minHeight: { xs: "40vw", sm: "35vw", md: "30vw" } }}
               />
               <Mui.IconButton
@@ -56,7 +56,7 @@ export const BookDetails = () => {
             >
               <Mui.Box>
                 <Mui.Chip
-                  label={`Author: ${book.author}`}
+                  label={`Author: ${book?.author}`}
                   color="primary"
                   size="medium"
                   variant="outlined"
@@ -66,7 +66,7 @@ export const BookDetails = () => {
                   }}
                 />
                 <Mui.Chip
-                  label={`Category: ${book.categeory}`}
+                  label={`Category: ${book?.categeory}`}
                   color="primary"
                   size="medium"
                   variant="outlined"
@@ -76,7 +76,7 @@ export const BookDetails = () => {
                   }}
                 />
                 <Mui.Chip
-                  label={`Quantity: ${book.quantity}`}
+                  label={`Quantity: ${book?.quantity}`}
                   color="primary"
                   size="medium"
                   variant="outlined"
@@ -92,21 +92,21 @@ export const BookDetails = () => {
                 textAlign="right"
                 display="flow-root list-item"
               >
-                {book.time}
+                {book?.uploadDate}
               </Mui.Typography>
             </Mui.Stack>
             <Mui.Stack direction="row" alignItems="center">
-              <Mui.Avatar src={book.privacy ? undefined : book.profile} />
-              <Mui.Typography variant="h6">{book.userName}</Mui.Typography>
+              <Mui.Avatar src={book?.profile} />
+              <Mui.Typography variant="h6">{book?.userName}</Mui.Typography>
             </Mui.Stack>
-            <Mui.Typography variant="body1">{book.description}</Mui.Typography>
+            <Mui.Typography variant="body1">{book?.description}</Mui.Typography>
             <Pages.Profile.Views.ProfileCard
               title="Related Books"
-              books={books}
+              books={books?.slice(0, 6)}
               role="books"
               onClick={() =>
                 customNavigate("../../search", {
-                  state: { author: book.author, categeory: book.categeory },
+                  state: { author: book?.author, categeory: book?.categeory },
                 })
               }
             />

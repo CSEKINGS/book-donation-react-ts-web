@@ -6,7 +6,7 @@ import * as Router from "react-router-dom";
 import * as React from "react";
 
 export const Content = () => {
-  const books = Hooks.useGetBooks();
+  const { books, loading } = Hooks.useGetBooks();
   const {
     state: { author, categeory },
   } = Router.useLocation();
@@ -31,7 +31,7 @@ export const Content = () => {
               setAuthor(books[e.target.value as number].author)
             }
           >
-            {books.map((book, index) => (
+            {books?.map((book, index) => (
               <Mui.MenuItem value={index}>{book.author}</Mui.MenuItem>
             ))}
           </Components.SelectField>
@@ -41,20 +41,20 @@ export const Content = () => {
               setCategeory(books[e.target.value as number].categeory)
             }
           >
-            {books.map((book, index) => (
+            {books?.map((book, index) => (
               <Mui.MenuItem value={index}>{book.categeory}</Mui.MenuItem>
             ))}
           </Components.SelectField>
         </Mui.Stack>
       </Mui.Grid>
       {books
-        .filter(
+        ?.filter(
           (book) =>
-            book.title.toLowerCase().includes(search.toLowerCase()) ||
-            book.author.toLowerCase().includes(authorVal.toLowerCase()) ||
+            book.name.toLowerCase().includes(search.toLowerCase()) &&
+            book.author.toLowerCase().includes(authorVal.toLowerCase()) &&
             book.categeory.toLowerCase().includes(categeoryVal.toLowerCase())
         )
-        .map((book, index) => (
+        ?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="books" />
           </Mui.Grid>
