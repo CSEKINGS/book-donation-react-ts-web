@@ -27,7 +27,14 @@ export const Dashboard = () => {
         variant="outlined"
         placeholder="Search..."
         size="small"
-        sx={{ fontSize: "small", m: 1, width: { xs: 100, md: "auto" } }}
+        sx={{
+          fontSize: "small",
+          m: 1,
+          width: {
+            xs: searchRoute ? "100%" : 115,
+            md: searchRoute ? "100%" : "auto",
+          },
+        }}
         InputProps={{
           startAdornment: (
             <Mui.InputAdornment position="start">

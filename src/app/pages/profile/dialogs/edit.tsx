@@ -21,7 +21,7 @@ export const UserEdit = () => {
     state: { user },
   } = Router.useLocation();
 
-  const onSubmit = async (
+  const onSubmit = (
     values: Exclude<Pages.Account.SignUp.main.Form, "confirmPassword">,
     formikHelpers: Formik.FormikHelpers<
       Exclude<Pages.Account.SignUp.main.Form, "confirmPassword">
@@ -39,21 +39,26 @@ export const UserEdit = () => {
         location,
         password,
       })
-        .then((res) => {
-          enqueueSnackbar("Your profile updated successfully!", {
-            variant: "success",
-          });
-          customNavigate(-1);
-          formikHelpers.setSubmitting(false);
-        })
+        .then(() =>
+          Api.Server.Request("token").then((res) => {
+            localStorage.setItem("bdtoken", res.token);
+            enqueueSnackbar("Your profile updated successfully!", {
+              variant: "success",
+            });
+            customNavigate(-1);
+            formikHelpers.setSubmitting(false);
+          })
+        )
         .catch((err) => {
-          enqueueSnackbar(`Error: ${err.message}`, {
+          enqueueSnackbar(`Error: ${err.response.data.message}`, {
             variant: "error",
           });
           formikHelpers.setSubmitting(false);
         });
     };
-    values.location ? locator(callback) : callback(user.location);
+    values.location
+      ? locator(callback, formikHelpers.setSubmitting)
+      : callback(user.location);
   };
 
   return (

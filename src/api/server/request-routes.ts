@@ -5,7 +5,7 @@ export const Routes: {
 } = {
   signin: { method: "post", url: "auth/login" },
   signup: { method: "post", url: "auth/register" },
-  token: { method: "post", url: "token" },
+  token: { method: "get", url: "token" },
   user: { method: "get", url: "user/detail" },
   userEdit: { method: "put", url: "user/edit" },
   userDelete: { method: "delete", url: "user/delete" },

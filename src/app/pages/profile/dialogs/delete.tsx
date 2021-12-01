@@ -25,7 +25,7 @@ export const Delete = () => {
         customNavigate("/");
       })
       .catch((err) =>
-        enqueueSnackbar(`Error: ${err.message}`, {
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
           variant: "error",
         })
       );

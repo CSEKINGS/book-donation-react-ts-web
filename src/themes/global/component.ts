@@ -40,6 +40,13 @@ export const components = (): Pick<Mui.ThemeOptions, "components"> => {
           },
         },
       },
+      MuiLinearProgress: {
+        styleOverrides: {
+          root: {
+            borderRadius,
+          },
+        },
+      },
       MuiCardActionArea: {
         styleOverrides: {
           root: {

@@ -33,7 +33,7 @@ export const Main = () => {
         formikHelpers.setSubmitting(false);
       })
       .catch((err) => {
-        enqueueSnackbar(`Error: ${err.message}`, {
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
           variant: "error",
         });
         formikHelpers.setSubmitting(false);
