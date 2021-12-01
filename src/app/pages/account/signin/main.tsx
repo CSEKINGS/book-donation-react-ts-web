@@ -28,6 +28,7 @@ export const Main = () => {
     Api.Server.Request("signin", values)
       .then((res) => {
         localStorage.setItem("bdtoken", res.token);
+        localStorage.setItem("refreshToken", res.refreshToken);
         enqueueSnackbar("Login Successfull!", { variant: "success" });
         customNavigate("/");
         formikHelpers.setSubmitting(false);

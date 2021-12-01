@@ -19,7 +19,9 @@ export const Dialog = ({
       fullScreen={isMobile}
       {...props}
       open={true}
-      PaperProps={{ style: { boxShadow: "none", minWidth: 400 } }}
+      PaperProps={{
+        style: { boxShadow: "none", minWidth: !isMobile ? 400 : "auto" },
+      }}
       onClose={onClose}
       maxWidth="sm"
     >

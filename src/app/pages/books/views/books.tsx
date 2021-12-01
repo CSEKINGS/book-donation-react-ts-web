@@ -58,6 +58,6 @@ export declare namespace bookCard {
     time: string;
     author: string;
     categeory: string;
-    location?: boolean;
+    location: boolean;
   }
 }

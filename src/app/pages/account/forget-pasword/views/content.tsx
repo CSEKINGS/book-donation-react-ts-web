@@ -6,7 +6,7 @@ export const Content = () => (
     <Mui.Stack>
       <Mui.Typography variant="h4">Forget password</Mui.Typography>
       <Mui.Typography fontSize="medium" color="text.secondary">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, iste!
+        If you forget your passsword, Please request below
       </Mui.Typography>
       <Components.FormField
         name="email"

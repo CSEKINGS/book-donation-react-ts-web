@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
 import * as React from "react";
+import * as Api from "src/api";
 
 const BookValidation = Yup.object().shape({
   image: Yup.string().required("No book image provided"),
@@ -23,47 +24,46 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { location } = React.useContext(Pages.Search.Hooks.Search);
+  const { locator } = Hooks.useLocation();
 
   const {
-    state: { book },
+    state: { book, user },
   } = Router.useLocation();
 
-  const onSubmit = async (
-    values: Pages.Books.Views.bookCard.book & { setlocation: boolean },
+  const onSubmit = (
+    values: Pages.Books.Views.bookCard.book & { setlocation?: boolean },
     formikHelpers: Formik.FormikHelpers<Pages.Books.Views.bookCard.book>
   ) => {
-    console.log(values, location);
-    const callback = () => {
-      formikHelpers.setSubmitting(false);
-      enqueueSnackbar(
-        variant === "create"
-          ? `${values.title} book was created`
-          : `${book.title} book info updated!`,
-        {
-          variant: "success",
-        }
-      );
-      customNavigate(-1);
+    const callback = (location: number[]) => {
+      const { title, image } = values;
+      Api.Server.Request("createBook", {
+        ...values,
+        name: title,
+        photo: image,
+        location,
+      })
+        .then((res) => {
+          enqueueSnackbar(
+            variant === "create"
+              ? `${values.title} book was created`
+              : `${book.title} book info updated!`,
+            {
+              variant: "success",
+            }
+          );
+          customNavigate(-1);
+          formikHelpers.setSubmitting(false);
+        })
+        .catch((err) => {
+          enqueueSnackbar(`Error: ${err.response.data.message}`, {
+            variant: "error",
+          });
+          formikHelpers.setSubmitting(false);
+        });
     };
     values.setlocation
-      ? location
-        ? callback()
-        : navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const location = [
-                position.coords.latitude,
-                position.coords.longitude,
-              ];
-              console.log(location);
-              callback();
-            },
-            (err) =>
-              enqueueSnackbar(
-                "Please allow to confirm your location for best experinece",
-                { variant: "error" }
-              )
-          )
-      : callback();
+      ? locator(callback, formikHelpers.setSubmitting)
+      : callback(user.location);
   };
 
   return (

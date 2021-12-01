@@ -7,7 +7,7 @@ export const Content = () => (
     <Mui.Stack>
       <Mui.Typography variant="h4">Sign In</Mui.Typography>
       <Mui.Typography fontSize="medium" color="text.secondary">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, iste!
+        Start your book sharing with better Experience
       </Mui.Typography>
       <Components.FormField
         name="email"

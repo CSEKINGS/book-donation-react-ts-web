@@ -13,7 +13,7 @@ export const Content = () => {
       <Mui.Stack>
         <Mui.Typography variant="h4">Sign Up</Mui.Typography>
         <Mui.Typography fontSize="medium" color="text.secondary">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse, iste!
+          Please allow location permission during SignUp process for get nearby books
         </Mui.Typography>
         <Mui.Stack
           direction="row"

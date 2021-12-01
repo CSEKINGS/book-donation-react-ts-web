@@ -56,6 +56,7 @@ export const Main = () => {
       })
         .then((res) => {
           localStorage.setItem("bdtoken", res.token);
+          localStorage.setItem("refreshToken", res.refreshToken);
           enqueueSnackbar("Registration Successfull!", {
             variant: "success",
           });

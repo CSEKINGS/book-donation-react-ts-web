@@ -11,7 +11,11 @@ export const Request = (options: string, data?: any) =>
   client({
     ...Requests.Routes[options],
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("bdtoken")}`,
+      Authorization: `Bearer ${
+        options === "token"
+          ? localStorage.getItem("refreshToken")
+          : localStorage.getItem("bdtoken")
+      }`,
     },
     data,
   }).then((res) => res.data);
