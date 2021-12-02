@@ -59,5 +59,6 @@ export declare namespace bookCard {
     author: string;
     categeory: string;
     location: number[];
+    userID: string;
   }
 }

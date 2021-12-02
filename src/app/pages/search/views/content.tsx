@@ -6,13 +6,23 @@ import * as Router from "react-router-dom";
 import * as React from "react";
 
 export const Content = () => {
-  const { books, loading } = Hooks.useGetBooks();
   const {
-    state: { author, categeory },
+    state: { author, categeory, role },
   } = Router.useLocation();
-  const { search } = React.useContext(Pages.Search.Hooks.Search);
+  const { books, loading } = Hooks.useGetBooks(role);
+  const { search } = React.useContext(Hooks.Search);
   const [authorVal, setAuthor] = React.useState(author || "");
   const [categeoryVal, setCategeory] = React.useState(categeory || "");
+  const authorIndex = books
+    ?.map((book, index) => {
+      if (book.author === author) return index;
+    })
+    .filter((val) => val !== undefined)[0];
+  const categeoryIndex = books
+    ?.map((book, index) => {
+      if (book.categeory === categeory) return index;
+    })
+    .filter((val) => val !== undefined)[0];
 
   return (
     <Mui.Grid container>
@@ -27,6 +37,7 @@ export const Content = () => {
         <Mui.Stack direction="row">
           <Components.SelectField
             label="Author"
+            value={authorIndex}
             onChange={(e: Mui.SelectChangeEvent<unknown>) =>
               setAuthor(books[e.target.value as number].author)
             }
@@ -37,6 +48,7 @@ export const Content = () => {
           </Components.SelectField>
           <Components.SelectField
             label="Categeory"
+            value={categeoryIndex}
             onChange={(e: Mui.SelectChangeEvent<unknown>) =>
               setCategeory(books[e.target.value as number].categeory)
             }

@@ -12,10 +12,10 @@ export const BookDetails = () => {
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { customNavigate } = Hooks.useNavigate();
   const { book, loading } = Hooks.useGetBooksByID();
-  const { books } = Hooks.useGetBooks();
   const {
     state: { role },
   } = Router.useLocation();
+  const { books } = Hooks.useGetBooks(role);
 
   const handleShare = () => {
     copy(window.location.href);
@@ -24,7 +24,7 @@ export const BookDetails = () => {
   };
   return (
     <>
-      <Components.Dialog open={true} title={book?.name} fullScreen>
+      <Components.Dialog open={true} back={book?.name} fullScreen>
         <Mui.DialogContent>
           <Mui.Stack justifyContent="center">
             <Mui.Box sx={{ position: "relative" }}>

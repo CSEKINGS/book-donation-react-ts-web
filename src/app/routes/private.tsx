@@ -1,5 +1,6 @@
 import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
+import * as React from "react";
 
 export const Route = ({
   restrict = false,
@@ -7,7 +8,8 @@ export const Route = ({
 }: Router.RouteProps & { restrict?: boolean }) => {
   const {
     user: { signin },
-  } = Hooks.useSignInCheck();
+  } = React.useContext(Hooks.Search);
+
   if (signin && restrict) return <Router.Route {...props} />;
   else if (!signin && !restrict) return <Router.Route {...props} />;
   else return <Router.Navigate to="/" />;

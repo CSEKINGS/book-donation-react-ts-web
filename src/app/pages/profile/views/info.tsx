@@ -2,15 +2,15 @@ import * as Mui from "@mui/material";
 import * as MuiIcons from "@mui/icons-material";
 import * as Hooks from "src/app/hooks";
 import * as Notistack from "notistack";
+import * as React from "react";
 
 export const UserInfo = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
-  const { user } = Hooks.useSignInCheck();
+  const { user } = React.useContext(Hooks.Search);
   const logout = () => {
     localStorage.setItem("bdtoken", "");
-    enqueueSnackbar("Logout Successfull!", { variant: "success" });
-    customNavigate("..");
+    window.location.reload();
   };
 
   return (

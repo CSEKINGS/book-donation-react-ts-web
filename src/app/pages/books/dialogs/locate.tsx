@@ -5,7 +5,7 @@ import * as Components from "src/app/components";
 export const Locate = () => {
   const {
     state: {
-      book: { title, image },
+      book: { name, photo },
     },
   } = Router.useLocation();
   return (
@@ -14,10 +14,10 @@ export const Locate = () => {
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"
-            src={image}
+            src={photo}
             sx={{ height: { xs: 200, md: 150 }, width: "100%" }}
           />
-          <Mui.Typography variant="h6">{title}</Mui.Typography>
+          <Mui.Typography variant="h6">{name}</Mui.Typography>
         </Mui.Stack>
       </Mui.DialogContent>
     </Components.Dialog>

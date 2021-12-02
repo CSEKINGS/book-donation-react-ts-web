@@ -3,13 +3,12 @@ import * as MuiIcons from "@mui/icons-material";
 import * as Router from "react-router-dom";
 import * as Constants from "src/constants";
 import * as Hooks from "src/app/hooks";
-import * as Pages from "src/app/pages";
 import * as React from "react";
 
 export const Dashboard = () => {
   const { pathname } = Router.useLocation();
   const { customNavigate } = Hooks.useNavigate();
-  const { search, setSearch } = React.useContext(Pages.Search.Hooks.Search);
+  const { search, setSearch } = React.useContext(Hooks.Search);
 
   const searchRoute = Router.matchPath(
     {

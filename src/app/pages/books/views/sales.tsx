@@ -6,7 +6,7 @@ import * as Hooks from "src/app/hooks";
 
 export const Sales = () => {
   const { customNavigate } = Hooks.useNavigate();
-  const { books, loading } = Hooks.useGetBooks();
+  const { books, loading } = Hooks.useGetBooks("mine");
   return (
     <>
       <Mui.Grid container>

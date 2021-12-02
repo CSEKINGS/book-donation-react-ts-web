@@ -7,7 +7,6 @@ import * as Formik from "formik";
 import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
-import * as React from "react";
 import * as Api from "src/api";
 
 const BookValidation = Yup.object().shape({
@@ -23,11 +22,10 @@ const BookValidation = Yup.object().shape({
 export const CreateEdit = ({ variant }: createEdit.Props) => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
-  const { location } = React.useContext(Pages.Search.Hooks.Search);
   const { locator } = Hooks.useLocation();
 
   const {
-    state: { book, user },
+    state: { book },
   } = Router.useLocation();
 
   const onSubmit = (
@@ -67,7 +65,7 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
     };
     values.setlocation
       ? locator(callback, formikHelpers.setSubmitting)
-      : callback(user.location);
+      : callback(variant === "create" ? [] : book.location);
   };
 
   return (

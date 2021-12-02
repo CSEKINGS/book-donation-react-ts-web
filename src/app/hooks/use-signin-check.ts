@@ -15,6 +15,7 @@ export const useSignInCheck = (): profile.Type => {
 
 export declare namespace profile {
   export interface Info {
+    _id:string;
     profile: string;
     name: string;
     email: string;

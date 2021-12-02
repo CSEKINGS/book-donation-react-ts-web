@@ -4,8 +4,8 @@ import * as Hooks from "src/app/hooks";
 
 export const Content = () => {
   const chart = Hooks.useGetChart();
-  const { books, loading } = Hooks.useGetBooks();
-  
+  const { books, loading } = Hooks.useGetBooks("books");
+
   const bannerDetails = Pages.Dashboard.Hooks.useGetDashboard();
   return (
     <Mui.Grid container justifyContent="center" alignItems="center">

@@ -1,10 +1,10 @@
 import * as Notistack from "notistack";
-import * as Pages from "src/app/pages";
+import * as Hooks from "src/app/hooks";
 import * as React from "react";
 
 export const useLocation = () => {
   const { enqueueSnackbar } = Notistack.useSnackbar();
-  const { location } = React.useContext(Pages.Search.Hooks.Search);
+  const { location } = React.useContext(Hooks.Search);
 
   const locator = (
     callback: (location: number[]) => void,

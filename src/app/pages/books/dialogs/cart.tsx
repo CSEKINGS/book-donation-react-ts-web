@@ -10,12 +10,12 @@ export const Cart = () => {
 
   const {
     state: {
-      book: { title, image },
+      book: { _id, name, photo },
     },
   } = Router.useLocation();
 
   const handleCart = () => {
-    enqueueSnackbar(`${title} book added in your Cart!`, {
+    enqueueSnackbar(`${name} book added in your Cart!`, {
       variant: "success",
     });
     customNavigate(-1);
@@ -31,16 +31,16 @@ export const Cart = () => {
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"
-            src={image}
+            src={photo}
             sx={{ height: { xs: 200, md: 150 }, width: "100%" }}
           />
-          <Mui.Typography variant="h6">{title}</Mui.Typography>
+          <Mui.Typography variant="h6">{name}</Mui.Typography>
           <Mui.Typography
             variant="body1"
             textAlign="center"
             sx={{ bgcolor: (theme) => theme.palette.secondary.main, p: 5 }}
           >
-            Are you sure, Do you want to Add this <b>{title}</b> in Cart ?
+            Are you sure, Do you want to Add this <b>{name}</b> in Cart ?
           </Mui.Typography>
         </Mui.Stack>
       </Mui.DialogContent>

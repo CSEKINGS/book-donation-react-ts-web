@@ -4,7 +4,7 @@ import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
 
 export const Cart = () => {
-  const { books, loading } = Hooks.useGetBooks();
+  const { books, loading } = Hooks.useGetBooks("cart");
   return (
     <>
       <Mui.Grid container>

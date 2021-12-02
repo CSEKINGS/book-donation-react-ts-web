@@ -10,7 +10,7 @@ export const Routes: {
   userEdit: { method: "put", url: "user/edit" },
   userDelete: { method: "delete", url: "user/delete" },
   notification: { method: "get", url: "user/notifications" },
-  cartlist: { method: "get", url: "user/wishlist" },
+  cartList: { method: "get", url: "user/wishlist" },
   cart: { method: "post", url: "user/wish" },
   createBook: { method: "post", url: "books/create" },
   bookEdit: { method: "put", url: "books/edit" },

@@ -1,7 +1,6 @@
 import * as Mui from "@mui/material";
 import * as MuiIcons from "@mui/icons-material";
 import * as Layouts from "src/app/layouts";
-import * as Pages from "src/app/pages";
 import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as React from "react";
@@ -9,7 +8,11 @@ import * as Hooks from "src/app/hooks";
 
 export const Main = () => {
   const { pathname } = Router.useLocation();
-  const { search, setSearch } = React.useContext(Pages.Search.Hooks.Search);
+  const {
+    search,
+    setSearch,
+    user: { signin, profile },
+  } = React.useContext(Hooks.Search);
 
   const landing = Router.matchPath(
     {
@@ -29,10 +32,6 @@ export const Main = () => {
     pathname
   );
 
-  const {
-    user: { signin, profile },
-  } = Hooks.useSignInCheck();
-
   setSearch(searchRoute ? search : "");
 
   return (
@@ -47,10 +46,7 @@ export const Main = () => {
             }
             sx={{ display: searchRoute ? "none" : "flex" }}
           >
-            <Mui.Typography
-              variant="h6"
-              noWrap
-            >
+            <Mui.Typography variant="h6" noWrap>
               Book Donation
             </Mui.Typography>
           </Mui.Button>

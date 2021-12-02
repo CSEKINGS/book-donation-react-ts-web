@@ -10,12 +10,12 @@ export const Remove = () => {
 
   const {
     state: {
-      book: { title, image },
+      book: { _id,name, photo },
     },
   } = Router.useLocation();
 
   const handleRemove = () => {
-    enqueueSnackbar(`Your ${title} book removed from Cart!`, {
+    enqueueSnackbar(`Your ${photo} book removed from Cart!`, {
       variant: "success",
     });
     customNavigate(-1);
@@ -33,10 +33,10 @@ export const Remove = () => {
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"
-            src={image}
+            src={photo}
             sx={{ height: { xs: 200, md: 150 }, width: "100%" }}
           />
-          <Mui.Typography variant="h6">{title}</Mui.Typography>
+          <Mui.Typography variant="h6">{name}</Mui.Typography>
           <Mui.Typography
             variant="body1"
             textAlign="center"
@@ -46,7 +46,7 @@ export const Remove = () => {
               p: 5,
             }}
           >
-            Are you sure, Do you want to Remove this <b>{title}</b> in Your Cart
+            Are you sure, Do you want to Remove this <b>{name}</b> in Your Cart
             ?
           </Mui.Typography>
         </Mui.Stack>

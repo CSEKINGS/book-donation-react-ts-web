@@ -29,9 +29,8 @@ export const Main = () => {
       .then((res) => {
         localStorage.setItem("bdtoken", res.token);
         localStorage.setItem("refreshToken", res.refreshToken);
-        enqueueSnackbar("Login Successfull!", { variant: "success" });
-        customNavigate("/");
         formikHelpers.setSubmitting(false);
+        window.location.reload();
       })
       .catch((err) => {
         enqueueSnackbar(`Error: ${err.response.data.message}`, {

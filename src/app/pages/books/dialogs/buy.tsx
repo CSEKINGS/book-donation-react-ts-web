@@ -16,7 +16,7 @@ export const Buy = () => {
 
   const {
     state: {
-      book: { title, image },
+      book: { _id, name, photo },
     },
   } = Router.useLocation();
 
@@ -42,10 +42,10 @@ export const Buy = () => {
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"
-            src={image}
+            src={photo}
             sx={{ height: { xs: 200, md: 150 }, width: "100%" }}
           />
-          <Mui.Typography variant="h6">{title}</Mui.Typography>
+          <Mui.Typography variant="h6">{name}</Mui.Typography>
         </Mui.Stack>
         <Formik.Formik
           initialValues={{
@@ -56,10 +56,7 @@ export const Buy = () => {
         >
           {() => (
             <Mui.Box component={Formik.Form}>
-              <Mui.CardContent
-                component={Mui.Stack}
-                alignItems="center"
-              >
+              <Mui.CardContent component={Mui.Stack} alignItems="center">
                 <Components.FormField
                   name="message"
                   label="Message"
