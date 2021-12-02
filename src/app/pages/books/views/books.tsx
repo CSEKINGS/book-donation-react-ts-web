@@ -51,7 +51,7 @@ export declare namespace bookCard {
     role: bookRole.Roles;
   }
   export interface book {
-    _id: string;
+    _id?: string;
     name: string;
     description: string;
     photo: string;
@@ -59,6 +59,7 @@ export declare namespace bookCard {
     author: string;
     categeory: string;
     location: number[];
-    userID: string;
+    userID?: string;
+    wishedUsers?: string[];
   }
 }

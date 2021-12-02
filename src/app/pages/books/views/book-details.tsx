@@ -15,7 +15,7 @@ export const BookDetails = () => {
   const {
     state: { role },
   } = Router.useLocation();
-  const { books } = Hooks.useGetBooks(role);
+  const { books } = Hooks.useGetBooks("books");
 
   const handleShare = () => {
     copy(window.location.href);

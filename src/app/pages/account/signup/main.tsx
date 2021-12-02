@@ -34,8 +34,8 @@ const additional = Yup.object().shape({
 });
 
 export const Main = () => {
-  const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const { customNavigate } = Hooks.useNavigate();
   const { locator } = Hooks.useLocation();
 
   const onSubmit = (
@@ -58,6 +58,7 @@ export const Main = () => {
           localStorage.setItem("bdtoken", res.token);
           localStorage.setItem("refreshToken", res.refreshToken);
           formikHelpers.setSubmitting(false);
+          customNavigate("/");
           window.location.reload();
         })
         .catch((err) => {
@@ -68,7 +69,7 @@ export const Main = () => {
         });
     };
 
-    locator(callback);
+    locator(callback, formikHelpers.setSubmitting);
   };
 
   return (

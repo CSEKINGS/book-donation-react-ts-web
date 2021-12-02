@@ -4,10 +4,11 @@ import * as Router from "react-router-dom";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
+import * as React from "react";
 
 export const Delete = () => {
-  const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: {
@@ -16,19 +17,22 @@ export const Delete = () => {
   } = Router.useLocation();
 
   const handleDelete = () => {
+    setLoading(true);
     Api.Server.Request("userDelete")
       .then((res) => {
         localStorage.setItem("bdtoken", "");
         enqueueSnackbar("Your account deleted successfully!", {
           variant: "success",
         });
-        customNavigate("/");
+        setLoading(false);
+        window.location.reload();
       })
-      .catch((err) =>
+      .catch((err) => {
         enqueueSnackbar(`Error: ${err.response.data.message}`, {
           variant: "error",
-        })
-      );
+        });
+        setLoading(false);
+      });
   };
 
   return (
@@ -40,6 +44,7 @@ export const Delete = () => {
       color="error"
     >
       <Mui.DialogContent>
+        {loading && <Mui.LinearProgress />}
         <Mui.Stack alignItems="center">
           <Mui.Avatar src={profile} sx={{ height: 70, width: 70 }} />
           <Mui.Typography variant="h6" textAlign="center">

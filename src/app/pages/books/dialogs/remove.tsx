@@ -3,22 +3,36 @@ import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Api from "src/api";
+import * as React from "react";
 
 export const Remove = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: {
-      book: { _id,name, photo },
+      book: { _id, name, photo },
     },
   } = Router.useLocation();
 
   const handleRemove = () => {
-    enqueueSnackbar(`Your ${photo} book removed from Cart!`, {
-      variant: "success",
-    });
-    customNavigate(-1);
+    setLoading(true);
+    Api.Server.Request("cartRemove", { bookId: _id })
+      .then((res) => {
+        enqueueSnackbar(`${name} book removed from Cart!`, {
+          variant: "success",
+        });
+        customNavigate(-2);
+        setLoading(false);
+      })
+      .catch((err) => {
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
+          variant: "error",
+        });
+        setLoading(false);
+      });
   };
 
   return (
@@ -30,6 +44,7 @@ export const Remove = () => {
       color="error"
     >
       <Mui.DialogContent>
+        {loading && <Mui.LinearProgress />}
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"

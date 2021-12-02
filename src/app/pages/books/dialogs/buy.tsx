@@ -5,6 +5,7 @@ import * as Formik from "formik";
 import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Api from "src/api";
 
 const BuyValidation = Yup.object().shape({
   message: Yup.string().trim().required("No message provided"),
@@ -20,16 +21,24 @@ export const Buy = () => {
     },
   } = Router.useLocation();
 
-  const onSubmit = async (
+  const onSubmit = (
     values: buy.Form,
     formikHelpers: Formik.FormikHelpers<buy.Form>
   ) => {
-    console.log(values);
-    formikHelpers.setSubmitting(false);
-    enqueueSnackbar("Message sent, Please wait for replay!", {
-      variant: "success",
-    });
-    customNavigate(-1);
+    Api.Server.Request("buy", { bookId: _id, message: values.message })
+      .then((res) => {
+        enqueueSnackbar("Message sent, Please wait for replay!", {
+          variant: "success",
+        });
+        customNavigate(-2);
+        formikHelpers.setSubmitting(false);
+      })
+      .catch((err) => {
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
+          variant: "error",
+        });
+        formikHelpers.setSubmitting(false);
+      });
   };
 
   return (
@@ -54,7 +63,7 @@ export const Buy = () => {
           validationSchema={BuyValidation}
           onSubmit={onSubmit}
         >
-          {() => (
+          {({ isSubmitting }) => (
             <Mui.Box component={Formik.Form}>
               <Mui.CardContent component={Mui.Stack} alignItems="center">
                 <Components.FormField
@@ -66,6 +75,7 @@ export const Buy = () => {
                   // helperText="Start conversation to the user"
                 />
               </Mui.CardContent>
+              {isSubmitting && <Mui.LinearProgress />}
               <Mui.Button type="submit" id="buy" hidden />
             </Mui.Box>
           )}

@@ -10,10 +10,20 @@ export const useGetBooks = (role: bookRole.Roles): Books.Type => {
     role === "cart" ? "cartList" : "books"
   );
   return {
-    books:
-      role === "mine"
-        ? data?.filter((book:Pages.Books.Views.bookCard.book) => book.userID === user._id)
-        : data?.filter((book:Pages.Books.Views.bookCard.book) => book.userID !== user._id),
+    books: {
+      mine: data?.filter(
+        (book: Pages.Books.Views.bookCard.book) => book.userID === user._id
+      ),
+      cart: data,
+      books: data?.filter(
+        (book: Pages.Books.Views.bookCard.book) =>
+          book.userID !== user._id && book.wishedUsers?.indexOf(user._id) === -1
+      ),
+      related: data?.filter(
+        (book: Pages.Books.Views.bookCard.book) =>
+          book.userID !== user._id && book.wishedUsers?.indexOf(user._id) === -1
+      ),
+    }[role],
     loading: isFetching,
   };
 };

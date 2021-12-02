@@ -31,6 +31,7 @@ export const components = (): Pick<Mui.ThemeOptions, "components"> => {
       MuiCard: {
         styleOverrides: {
           root: {
+            borderRadius,
             overflow: "visible",
             minHeight: 150,
             transform: "scale(0.99)",

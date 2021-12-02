@@ -3,10 +3,13 @@ import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Api from "src/api";
+import * as React from "react";
 
 export const Cart = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: {
@@ -15,10 +18,21 @@ export const Cart = () => {
   } = Router.useLocation();
 
   const handleCart = () => {
-    enqueueSnackbar(`${name} book added in your Cart!`, {
-      variant: "success",
-    });
-    customNavigate(-1);
+    setLoading(true);
+    Api.Server.Request("cart", { bookId: _id })
+      .then((res) => {
+        enqueueSnackbar(`${name} book added in your Cart!`, {
+          variant: "success",
+        });
+        customNavigate(-2);
+        setLoading(false);
+      })
+      .catch((err) => {
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
+          variant: "error",
+        });
+        setLoading(false);
+      });
   };
   return (
     <Components.Dialog
@@ -28,6 +42,7 @@ export const Cart = () => {
       fullScreen={false}
     >
       <Mui.DialogContent>
+        {loading && <Mui.LinearProgress />}
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"

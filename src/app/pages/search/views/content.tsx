@@ -9,7 +9,7 @@ export const Content = () => {
   const {
     state: { author, categeory, role },
   } = Router.useLocation();
-  const { books, loading } = Hooks.useGetBooks(role);
+  const { books, loading } = Hooks.useGetBooks(role || "books");
   const { search } = React.useContext(Hooks.Search);
   const [authorVal, setAuthor] = React.useState(author || "");
   const [categeoryVal, setCategeory] = React.useState(categeory || "");

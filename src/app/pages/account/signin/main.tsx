@@ -18,8 +18,8 @@ const SignInValidation = Yup.object().shape({
 });
 
 export const Main = () => {
-  const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const { customNavigate } = Hooks.useNavigate();
 
   const onSubmit = (
     values: main.Form,
@@ -30,7 +30,8 @@ export const Main = () => {
         localStorage.setItem("bdtoken", res.token);
         localStorage.setItem("refreshToken", res.refreshToken);
         formikHelpers.setSubmitting(false);
-        window.location.reload();
+          customNavigate("/");
+          window.location.reload();
       })
       .catch((err) => {
         enqueueSnackbar(`Error: ${err.response.data.message}`, {

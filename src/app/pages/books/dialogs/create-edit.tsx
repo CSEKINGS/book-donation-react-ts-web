@@ -48,7 +48,7 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
           enqueueSnackbar(
             variant === "create"
               ? `${values.name} book was created`
-              : `${book.name} book info updated!`,
+              : `${book?.name} book info updated!`,
             {
               variant: "success",
             }
@@ -65,7 +65,7 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
     };
     values.setlocation
       ? locator(callback, formikHelpers.setSubmitting)
-      : callback(variant === "create" ? [] : book.location);
+      : callback(variant === "create" ? [] : book?.location);
   };
 
   return (
