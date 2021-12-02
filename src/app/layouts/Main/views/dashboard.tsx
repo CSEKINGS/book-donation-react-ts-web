@@ -65,14 +65,16 @@ export const Dashboard = () => {
       >
         {Constants.buttonContent.map((val, index) => (
           <Mui.Chip
+            key={index}
             label={val.name}
             color="primary"
             size="medium"
-            component={Router.Link}
-            to={val.path}
             sx={{
               fontWeight: "bold",
             }}
+            onClick={() =>
+              customNavigate(val.path, { state: { role: val.role } })
+            }
           />
         ))}
       </Mui.Stack>
