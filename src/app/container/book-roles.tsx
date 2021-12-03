@@ -6,7 +6,11 @@ import * as Pages from "src/app/pages";
 export const BookRole = ({
   role,
   book,
-}: bookRole.Props & { book: Pages.Books.Views.bookCard.book }) => {
+  loading,
+}: bookRole.Props & {
+  book: Pages.Books.Views.bookCard.book;
+  loading?: boolean;
+}) => {
   const { pathname } = Router.useLocation();
   const isBookDetailRoute = Router.matchPath(
     {
@@ -39,21 +43,49 @@ export const BookRole = ({
         {
           books: (
             <>
-              <Container.ActionButtons book={book} bookAction="locate" />
-              <Container.ActionButtons book={book} bookAction="buy" />
-              <Container.ActionButtons book={book} bookAction="cart" />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="locate"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="buy"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="cart"
+              />
             </>
           ),
           related: (
             <>
-              <Container.ActionButtons book={book} bookAction="locate" />
-              <Container.ActionButtons book={book} bookAction="buy" />
-              <Container.ActionButtons book={book} bookAction="cart" />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="locate"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="buy"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="cart"
+              />
             </>
           ),
           mine: (
             <>
-              <Container.ActionButtons book={book} bookAction="change" />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="change"
+              />
               {/* {!isBookDetailRoute && (
                 <Mui.Slider
                   defaultValue={50}
@@ -63,6 +95,7 @@ export const BookRole = ({
                 />
               )} */}
               <Container.ActionButtons
+                disabled={loading}
                 book={book}
                 bookAction="delete"
                 color="error"
@@ -71,12 +104,41 @@ export const BookRole = ({
           ),
           cart: (
             <>
-              <Container.ActionButtons book={book} bookAction="locate" />
-              <Container.ActionButtons book={book} bookAction="buy" />
               <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="locate"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="buy"
+              />
+              <Container.ActionButtons
+                disabled={loading}
                 book={book}
                 color="error"
                 bookAction="remove"
+              />
+            </>
+          ),
+          buy: (
+            <>
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="locate"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                bookAction="message"
+              />
+              <Container.ActionButtons
+                disabled={loading}
+                book={book}
+                color="error"
+                bookAction="cancel"
               />
             </>
           ),

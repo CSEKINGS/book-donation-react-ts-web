@@ -118,7 +118,7 @@ export const BookDetails = () => {
                   })
                 }
               />
-              <Container.BookRole book={book} role={role} />
+              <Container.BookRole book={book} role={role} loading={loading} />
             </Mui.Stack>
           )}
         </Mui.DialogContent>

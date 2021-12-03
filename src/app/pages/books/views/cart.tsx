@@ -4,7 +4,9 @@ import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
 
 export const Cart = () => {
-  const { books, loading } = Hooks.useGetBooks("cart");
+  const { books } = Hooks.useGetBooks("cart");
+  const buyed = Hooks.useGetBooks("buy");
+  console.log(buyed);
   return (
     <>
       <Mui.Grid container>
@@ -16,6 +18,16 @@ export const Cart = () => {
         {books?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="cart" />
+          </Mui.Grid>
+        ))}
+        <Mui.Grid item xs={12}>
+          <Mui.Typography variant="h5" noWrap>
+            Buy requested
+          </Mui.Typography>
+        </Mui.Grid>
+        {buyed.books?.map((book, index) => (
+          <Mui.Grid item xs key={index}>
+            <Pages.Books.Views.BookCard bookInfo={book} role="buy" />
           </Mui.Grid>
         ))}
       </Mui.Grid>

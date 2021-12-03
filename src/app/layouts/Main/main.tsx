@@ -59,31 +59,35 @@ export const Main = () => {
             <Layouts.MainLayout.Views.Dashboard />
           )}
           {signin ? (
-            <Mui.IconButton
-              component={Router.Link}
-              to="profile"
-              sx={{ border: 0 }}
-            >
-              <Mui.Badge
-                overlap="circular"
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
-                badgeContent={
-                  <Mui.Avatar
-                    alt="Notifications"
-                    sx={{
-                      height: 15,
-                      width: 15,
-                      bgcolor: (theme) => theme.palette.success.main,
-                      fontSize: 10,
-                    }}
-                  >
-                    {notifications?.length}
-                  </Mui.Avatar>
-                }
+            notifications?.length ? (
+              <Mui.IconButton
+                component={Router.Link}
+                to="profile"
+                sx={{ border: 0 }}
               >
-                <Mui.Avatar src={profile} />
-              </Mui.Badge>
-            </Mui.IconButton>
+                <Mui.Badge
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                  badgeContent={
+                    <Mui.Avatar
+                      alt="Notifications"
+                      sx={{
+                        height: 15,
+                        width: 15,
+                        bgcolor: (theme) => theme.palette.success.main,
+                        fontSize: 10,
+                      }}
+                    >
+                      {notifications?.length}
+                    </Mui.Avatar>
+                  }
+                >
+                  <Mui.Avatar src={profile} />
+                </Mui.Badge>
+              </Mui.IconButton>
+            ) : (
+              <Mui.Avatar src={profile} />
+            )
           ) : (
             <Components.AccountButton />
           )}

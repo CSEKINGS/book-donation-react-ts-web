@@ -21,6 +21,7 @@ export const Routes: {
   booksTitle: { method: "get", url: "books/title" },
   search: { method: "get", url: "books/search/:no" },
   buy: { method: "post", url: "buy/request" },
+  cancel: { method: "post", url: "buy/cancel" },
   owner: { method: "post", url: "buy/owner" },
   dashboard: { method: "get", url: "books/dashboard" },
 };

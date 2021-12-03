@@ -2,17 +2,13 @@ import * as Mui from "@mui/material";
 import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as Formik from "formik";
-import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Pages from "src/app/pages";
 import * as Api from "src/api";
 import * as React from "react";
 
-export const BuyValidation = Yup.object().shape({
-  message: Yup.string().trim().required("No message provided"),
-});
-
-export const Buy = () => {
+export const Message = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const [loading, setLoading] = React.useState(false);
@@ -24,8 +20,8 @@ export const Buy = () => {
   } = Router.useLocation();
 
   const onSubmit = (
-    values: buy.Form,
-    formikHelpers: Formik.FormikHelpers<buy.Form>
+    values: Pages.Books.Dialogs.buy.Form,
+    formikHelpers: Formik.FormikHelpers<Pages.Books.Dialogs.buy.Form>
   ) => {
     Api.Server.Request("buy", { bookId: _id, message: values.message })
       .then((res) => {
@@ -46,7 +42,7 @@ export const Buy = () => {
   return (
     <Components.Dialog
       open={true}
-      title="Buy"
+      title="Message"
       onConfirm={() => document.getElementById("buy")?.click()}
       loading={loading}
     >
@@ -63,7 +59,7 @@ export const Buy = () => {
           initialValues={{
             message: "",
           }}
-          validationSchema={BuyValidation}
+          validationSchema={Pages.Books.Dialogs.BuyValidation}
           onSubmit={onSubmit}
         >
           {({ isSubmitting }) => (
@@ -87,9 +83,3 @@ export const Buy = () => {
     </Components.Dialog>
   );
 };
-
-export declare namespace buy {
-  export interface Form {
-    message: string;
-  }
-}

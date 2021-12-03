@@ -9,6 +9,7 @@ export const ActionButtons = ({
   book,
   ...props
 }: actionButtons.Type) => {
+  console.log(props.disabled);
   const { pathname } = Router.useLocation();
   const isBookDetailRoute = Router.matchPath(
     {
@@ -24,6 +25,8 @@ export const ActionButtons = ({
     buy: <MuiIcons.AttachMoney fontSize="small" />,
     cart: <MuiIcons.AddShoppingCart fontSize="small" />,
     change: <MuiIcons.Edit fontSize="small" />,
+    message: <MuiIcons.Message fontSize="small" />,
+    cancel: <MuiIcons.Cancel fontSize="small" />,
     delete: <MuiIcons.Delete fontSize="small" />,
     locate: <MuiIcons.LocationSearching fontSize="small" />,
     remove: <MuiIcons.RemoveShoppingCart fontSize="small" />,
@@ -31,27 +34,35 @@ export const ActionButtons = ({
 
   const action = {
     buy: () =>
-      customNavigate(isBookDetailRoute ? "buy" : `${book.id}/buy`, {
+      customNavigate(isBookDetailRoute ? "buy" : `${book._id}/buy`, {
         state: { book },
       }),
     cart: () =>
-      customNavigate(isBookDetailRoute ? "cart" : `${book.id}/cart`, {
+      customNavigate(isBookDetailRoute ? "cart" : `${book._id}/cart`, {
+        state: { book },
+      }),
+    message: () =>
+      customNavigate(isBookDetailRoute ? "message" : `${book._id}/message`, {
+        state: { book },
+      }),
+    cancel: () =>
+      customNavigate(isBookDetailRoute ? "cancel" : `${book._id}/cancel`, {
         state: { book },
       }),
     change: () =>
-      customNavigate(isBookDetailRoute ? "change" : `${book.id}/change`, {
+      customNavigate(isBookDetailRoute ? "change" : `${book._id}/change`, {
         state: { book },
       }),
     delete: () =>
-      customNavigate(isBookDetailRoute ? "delete" : `${book.id}/delete`, {
+      customNavigate(isBookDetailRoute ? "delete" : `${book._id}/delete`, {
         state: { book },
       }),
     locate: () =>
-      customNavigate(isBookDetailRoute ? "locate" : `${book.id}/locate`, {
+      customNavigate(isBookDetailRoute ? "locate" : `${book._id}/locate`, {
         state: { book },
       }),
     remove: () =>
-      customNavigate(isBookDetailRoute ? "remove" : `${book.id}/remove`, {
+      customNavigate(isBookDetailRoute ? "remove" : `${book._id}/remove`, {
         state: { book },
       }),
   }[bookAction];
