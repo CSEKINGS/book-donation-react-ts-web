@@ -59,12 +59,12 @@ export const Main = () => {
             <Layouts.MainLayout.Views.Dashboard />
           )}
           {signin ? (
-            notifications?.length ? (
-              <Mui.IconButton
-                component={Router.Link}
-                to="profile"
-                sx={{ border: 0 }}
-              >
+            <Mui.IconButton
+              component={Router.Link}
+              to="profile"
+              sx={{ border: 0 }}
+            >
+              {notifications?.length ? (
                 <Mui.Badge
                   overlap="circular"
                   anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -84,10 +84,10 @@ export const Main = () => {
                 >
                   <Mui.Avatar src={profile} />
                 </Mui.Badge>
-              </Mui.IconButton>
-            ) : (
-              <Mui.Avatar src={profile} />
-            )
+              ) : (
+                <Mui.Avatar src={profile} />
+              )}
+            </Mui.IconButton>
           ) : (
             <Components.AccountButton />
           )}
