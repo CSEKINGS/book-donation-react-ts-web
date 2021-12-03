@@ -5,19 +5,23 @@ import * as React from "react";
 
 export const useGetBooks = (role: bookRole.Roles): Books.Type => {
   const { user } = React.useContext(Hooks.Search);
-  const { data, isFetching } = Api.Server.useRequest(
-    ["books", role],
-    role === "cart" ? "cartList" : "books"
-  );
+  const { data, isFetching } = Api.Server.useRequest(["books", role], "books");
   return {
     books: {
       mine: data?.filter(
         (book: Pages.Books.Views.bookCard.book) => book.userID === user._id
       ),
-      cart: data,
+      cart: data?.filter(
+        (book: Pages.Books.Views.bookCard.book) =>
+          book.userID !== user._id &&
+          (JSON.stringify(book.wishedUsers).includes(user._id) ||
+            JSON.stringify(book.receiverID).includes(user._id))
+      ),
       books: data?.filter(
         (book: Pages.Books.Views.bookCard.book) =>
-          book.userID !== user._id && book.wishedUsers?.indexOf(user._id) === -1
+          book.userID !== user._id &&
+          book.wishedUsers?.indexOf(user._id) === -1 &&
+          !JSON.stringify(book.receiverID).includes(user._id)
       ),
       related: data?.filter(
         (book: Pages.Books.Views.bookCard.book) =>

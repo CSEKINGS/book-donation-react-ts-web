@@ -8,13 +8,13 @@ import * as React from "react";
 export const Chat = () => {
   const {
     state: {
-      notification: { uid, profile, name },
+      notification: { photo, name },
     },
   } = Router.useLocation();
-
   const [chatMessage, setChatMessage] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
-  const chatList = Pages.Profile.Hooks.useGetChatList(uid);
+  const chatList = Pages.Profile.Hooks.useGetChatList();
 
   const handleSend = () => {
     console.log(chatMessage);
@@ -31,8 +31,9 @@ export const Chat = () => {
       open={true}
       color="error"
       fullScreen
-      profile={profile}
+      profile={photo}
       back={name}
+      loading={loading}
     >
       <Mui.DialogContent>
         <Mui.Stack
@@ -46,11 +47,7 @@ export const Chat = () => {
           }}
         >
           {chatList.map((values, index) => (
-            <Pages.Profile.Views.Chat
-              {...values}
-              profile={profile}
-              key={index}
-            />
+            <Pages.Profile.Views.Chat {...values} key={index} />
           ))}
         </Mui.Stack>
         <Mui.TextField

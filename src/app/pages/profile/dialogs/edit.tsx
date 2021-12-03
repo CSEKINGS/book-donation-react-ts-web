@@ -7,6 +7,7 @@ import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
 import * as Yup from "yup";
 import * as Api from "src/api";
+import * as React from "react";
 
 const additional = Yup.object().shape({
   location: Yup.boolean(),
@@ -16,6 +17,7 @@ export const UserEdit = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { locator } = Hooks.useLocation();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: { user },
@@ -47,6 +49,7 @@ export const UserEdit = () => {
             });
             customNavigate(-1);
             formikHelpers.setSubmitting(false);
+            // window.location.reload();
           })
         )
         .catch((err) => {
@@ -66,6 +69,7 @@ export const UserEdit = () => {
       open={true}
       title="Edit your profile"
       onConfirm={() => document.getElementById("user-edit")?.click()}
+      loading={loading}
     >
       <Mui.DialogContent>
         <Formik.Formik
@@ -78,7 +82,7 @@ export const UserEdit = () => {
           {({ values: { profile }, errors, isSubmitting }) => (
             <Mui.Box component={Formik.Form}>
               <Mui.CardContent component={Mui.Stack}>
-                {isSubmitting && <Mui.LinearProgress />}
+                {setLoading(isSubmitting)}
                 <Mui.Stack direction="row" justifyContent="space-between">
                   <Mui.Stack>
                     <Components.FormField

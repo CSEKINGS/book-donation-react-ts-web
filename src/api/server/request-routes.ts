@@ -22,4 +22,5 @@ export const Routes: {
   search: { method: "get", url: "books/search/:no" },
   buy: { method: "post", url: "buy/request" },
   owner: { method: "post", url: "buy/owner" },
+  dashboard: { method: "get", url: "books/dashboard" },
 };

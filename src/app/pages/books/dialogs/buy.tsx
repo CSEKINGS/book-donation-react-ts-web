@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
+import * as React from "react";
 
 const BuyValidation = Yup.object().shape({
   message: Yup.string().trim().required("No message provided"),
@@ -14,6 +15,7 @@ const BuyValidation = Yup.object().shape({
 export const Buy = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: {
@@ -46,6 +48,7 @@ export const Buy = () => {
       open={true}
       title="Buy"
       onConfirm={() => document.getElementById("buy")?.click()}
+      loading={loading}
     >
       <Mui.DialogContent>
         <Mui.Stack alignItems="center">
@@ -65,6 +68,7 @@ export const Buy = () => {
         >
           {({ isSubmitting }) => (
             <Mui.Box component={Formik.Form}>
+              {setLoading(isSubmitting)}
               <Mui.CardContent component={Mui.Stack} alignItems="center">
                 <Components.FormField
                   name="message"
@@ -75,7 +79,6 @@ export const Buy = () => {
                   // helperText="Start conversation to the user"
                 />
               </Mui.CardContent>
-              {isSubmitting && <Mui.LinearProgress />}
               <Mui.Button type="submit" id="buy" hidden />
             </Mui.Box>
           )}

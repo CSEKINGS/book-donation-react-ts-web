@@ -3,8 +3,8 @@ import * as Pages from "src/app/pages";
 import * as Hooks from "src/app/hooks";
 
 export const Content = () => {
-  const chart = Hooks.useGetChart();
-  const { books, loading } = Hooks.useGetBooks("books");
+  const { chart, loading } = Hooks.useGetChart();
+  const { books } = Hooks.useGetBooks("books");
 
   const bannerDetails = Pages.Dashboard.Hooks.useGetDashboard();
   return (
@@ -19,6 +19,7 @@ export const Content = () => {
         title="All Books"
         books={books}
         role="books"
+        loading={loading}
       />
     </Mui.Grid>
   );

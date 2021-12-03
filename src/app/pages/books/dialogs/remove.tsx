@@ -42,9 +42,9 @@ export const Remove = () => {
       onConfirm={handleRemove}
       fullScreen={false}
       color="error"
+      loading={loading}
     >
       <Mui.DialogContent>
-        {loading && <Mui.LinearProgress />}
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"

@@ -6,7 +6,7 @@ import * as React from "react";
 export const useGetNotifications = (): Notifications.Type => {
   const { user } = React.useContext(Hooks.Search);
   const { data, isFetching } = Api.Server.useRequest(
-    ["notifications"],
+    ["notifications", user._id],
     "notification"
   );
   return { notifications: data, loading: isFetching };

@@ -59,7 +59,7 @@ export const ProfileCard = ({
         ))}
       {notifications?.map((notification, index) => (
         <Mui.Grid item xs={12} key={index} align="center">
-          {/* <Pages.Profile.Views.Notification {...notification} /> */}
+          <Pages.Profile.Views.Notification {...notification} />
         </Mui.Grid>
       ))}
     </Mui.Grid>

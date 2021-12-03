@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
+import * as React from "react";
 
 const BookValidation = Yup.object().shape({
   photo: Yup.string().required("No book image provided"),
@@ -23,6 +24,7 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { locator } = Hooks.useLocation();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: { book },
@@ -73,6 +75,7 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
       open={true}
       title={variant === "create" ? "create new book" : "update book info"}
       onConfirm={() => document.getElementById("create-edit")?.click()}
+      loading={loading}
     >
       <Mui.DialogContent>
         <Formik.Formik
@@ -94,7 +97,7 @@ export const CreateEdit = ({ variant }: createEdit.Props) => {
         >
           {({ values, errors, touched, isSubmitting }) => (
             <Mui.Box component={Formik.Form}>
-              {isSubmitting && <Mui.LinearProgress />}
+              {setLoading(isSubmitting)}
               <Mui.Stack alignItems="center">
                 <Components.Profiler
                   name="photo"

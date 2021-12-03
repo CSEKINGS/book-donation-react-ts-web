@@ -42,9 +42,9 @@ export const Delete = () => {
       onConfirm={handleDelete}
       fullScreen={false}
       color="error"
+      loading={loading}
     >
       <Mui.DialogContent>
-        {loading && <Mui.LinearProgress />}
         <Mui.Stack alignItems="center">
           <Mui.Avatar src={profile} sx={{ height: 70, width: 70 }} />
           <Mui.Typography variant="h6" textAlign="center">

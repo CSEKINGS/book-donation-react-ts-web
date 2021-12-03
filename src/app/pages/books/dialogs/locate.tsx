@@ -5,7 +5,7 @@ import * as Components from "src/app/components";
 export const Locate = () => {
   const {
     state: {
-      book: { name, photo },
+      book: { name, photo, location },
     },
   } = Router.useLocation();
   return (
@@ -18,6 +18,9 @@ export const Locate = () => {
             sx={{ height: { xs: 200, md: 150 }, width: "100%" }}
           />
           <Mui.Typography variant="h6">{name}</Mui.Typography>
+          <Mui.Typography variant="h6">
+            Geo Location : {location.join(", ")}
+          </Mui.Typography>
         </Mui.Stack>
       </Mui.DialogContent>
     </Components.Dialog>

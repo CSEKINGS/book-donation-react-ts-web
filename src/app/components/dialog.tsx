@@ -9,6 +9,7 @@ export const Dialog = ({
   color,
   back,
   profile,
+  loading,
   ...props
 }: CusDialogProps.Props) => {
   const isMobile = Mui.useMediaQuery(Mui.useTheme().breakpoints.down("md"));
@@ -46,6 +47,7 @@ export const Dialog = ({
               {back || "Back"}
             </Mui.Button>
           ) : null}
+          {loading && <Mui.CircularProgress />}
         </Mui.Stack>
       </Mui.DialogTitle>
       {children}
@@ -87,5 +89,6 @@ export declare namespace CusDialogProps {
       back?: string;
       profile?: string;
       onConfirm?: () => void;
+      loading?: boolean;
     };
 }

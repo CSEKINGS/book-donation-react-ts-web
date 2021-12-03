@@ -9,7 +9,7 @@ Chart.register(ArcElement, Tooltip, Legend);
 export const Main = () => {
   const [search, setSearch] = React.useState("");
   const [location, setLocation] = React.useState<number[]>();
-  const { user } = Hooks.useSignInCheck();
+
   React.useEffect(
     () =>
       navigator.geolocation.getCurrentPosition((position) =>
@@ -24,7 +24,7 @@ export const Main = () => {
         search,
         setSearch,
         location,
-        user,
+        user: Hooks.useSignInCheck(),
       }}
     >
       <Router.BrowserRouter>

@@ -4,10 +4,12 @@ import * as Components from "src/app/components";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
+import * as React from "react";
 
 export const Delete = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  const [loading, setLoading] = React.useState(false);
 
   const {
     state: {
@@ -16,18 +18,21 @@ export const Delete = () => {
   } = Router.useLocation();
 
   const handleDelete = () => {
+    setLoading(true);
     Api.Server.Request("bookDelete", { bookId: _id })
       .then((res) => {
         enqueueSnackbar(`Your ${name} book deleted successfully!`, {
           variant: "success",
         });
         customNavigate(-2);
+        setLoading(false);
       })
-      .catch((err) =>
+      .catch((err) => {
         enqueueSnackbar(`Error: ${err.response.data.message}`, {
           variant: "error",
-        })
-      );
+        });
+        setLoading(false);
+      });
   };
 
   return (
@@ -37,7 +42,7 @@ export const Delete = () => {
       onConfirm={handleDelete}
       fullScreen={false}
       color="error"
-      maxWidth="sm"
+      loading={loading}
     >
       <Mui.DialogContent>
         <Mui.Stack alignItems="center">

@@ -40,9 +40,9 @@ export const Cart = () => {
       title="Add to Cart"
       onConfirm={handleCart}
       fullScreen={false}
+      loading={loading}
     >
       <Mui.DialogContent>
-        {loading && <Mui.LinearProgress />}
         <Mui.Stack alignItems="center">
           <Mui.Avatar
             variant="square"

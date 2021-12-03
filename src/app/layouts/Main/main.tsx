@@ -5,6 +5,7 @@ import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as React from "react";
 import * as Hooks from "src/app/hooks";
+import * as Pages from "src/app/pages";
 
 export const Main = () => {
   const { pathname } = Router.useLocation();
@@ -31,6 +32,8 @@ export const Main = () => {
     },
     pathname
   );
+
+  const { notifications, loading } = Pages.Profile.Hooks.useGetNotifications();
 
   setSearch(searchRoute ? search : "");
 
@@ -74,7 +77,7 @@ export const Main = () => {
                       fontSize: 10,
                     }}
                   >
-                    5
+                    {notifications?.length}
                   </Mui.Avatar>
                 }
               >

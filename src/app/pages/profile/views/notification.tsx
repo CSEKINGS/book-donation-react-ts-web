@@ -2,8 +2,9 @@ import * as Mui from "@mui/material";
 import * as Hooks from "src/app/hooks";
 
 export const Notification = ({
-  uid,
-  profile,
+  bookID,
+  userID,
+  photo,
   name,
   message,
   time,
@@ -19,7 +20,7 @@ export const Notification = ({
       }}
       onClick={() =>
         customNavigate("chat", {
-          state: { notification: { uid, profile, name } },
+          state: { notification: { userID, bookID, photo, name } },
         })
       }
     >
@@ -31,7 +32,7 @@ export const Notification = ({
         >
           <Mui.Avatar
             sx={{ height: { xs: 50, md: 60 }, width: { xs: 50, md: 60 } }}
-            src={profile}
+            src={photo}
           />
           <Mui.Stack sx={{ width: "70%" }}>
             <Mui.Typography variant="h5" textAlign="initial" noWrap>
@@ -58,8 +59,9 @@ export const Notification = ({
 };
 export declare namespace notification {
   export interface Props {
-    uid: string;
-    profile: string;
+    bookID: string;
+    userID: string;
+    photo: string;
     name: string;
     message: string;
     time: string;

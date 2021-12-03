@@ -24,11 +24,14 @@ export const BookDetails = () => {
   };
   return (
     <>
-      <Components.Dialog open={true} back={book?.name} fullScreen>
+      <Components.Dialog
+        open={true}
+        back={book?.name}
+        loading={loading}
+        fullScreen
+      >
         <Mui.DialogContent>
-          {loading ? (
-            <Mui.LinearProgress />
-          ) : (
+          {book && (
             <Mui.Stack justifyContent="center">
               <Mui.Box sx={{ position: "relative" }}>
                 <Mui.CardMedia

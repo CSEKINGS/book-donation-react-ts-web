@@ -4,7 +4,13 @@ import * as Chart from "react-chartjs-2";
 import * as Constants from "src/constants";
 import * as ChartType from "chart.js";
 
-export const BookList = ({ title, books, chart, role }: bookList.Props) => (
+export const BookList = ({
+  title,
+  books,
+  chart,
+  role,
+  loading,
+}: bookList.Props) => (
   <>
     <Mui.Grid item xs={12}>
       <Mui.Divider variant={"middle"}>
@@ -14,23 +20,21 @@ export const BookList = ({ title, books, chart, role }: bookList.Props) => (
       </Mui.Divider>
     </Mui.Grid>
     {chart && (
-      <Mui.Grid
-        xs={12}
-        md={4}
-        component={Mui.Stack}
-        position="relative"
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Mui.Grid xs={12} md={4} component={Mui.Stack} position="relative">
         <Chart.Doughnut data={chart} options={Constants.ChartOptions} />
         <Mui.Typography
           variant="h5"
           color="primary"
           position="absolute"
           align="center"
-          sx={{ width: "30%" }}
+          sx={{
+            width: "30%",
+            top: "55%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+          }}
         >
-          Available Data
+          {loading ? <Mui.CircularProgress /> : "Available Data"}
         </Mui.Typography>
       </Mui.Grid>
     )}
@@ -48,5 +52,6 @@ export declare namespace bookList {
     books: Pages.Books.Views.bookCard.book[];
     chart?: ChartType.ChartData<"doughnut", number[], unknown>;
     role: bookRole.Roles;
+    loading?: boolean;
   }
 }
