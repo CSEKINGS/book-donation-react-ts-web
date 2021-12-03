@@ -9,7 +9,6 @@ export const ActionButtons = ({
   book,
   ...props
 }: actionButtons.Type) => {
-  console.log(props.disabled);
   const { pathname } = Router.useLocation();
   const isBookDetailRoute = Router.matchPath(
     {
