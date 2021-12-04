@@ -3,6 +3,7 @@ import * as MuiIcons from "@mui/icons-material";
 import * as Pages from "src/app/pages";
 import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
+import * as Components from "src/app/components";
 
 export const Sales = () => {
   const { customNavigate } = Hooks.useNavigate();
@@ -28,6 +29,7 @@ export const Sales = () => {
             Create
           </Mui.Button>
         </Mui.Grid>
+        {!books?.length && <Components.NothigToShow />}
         {books?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="mine" />

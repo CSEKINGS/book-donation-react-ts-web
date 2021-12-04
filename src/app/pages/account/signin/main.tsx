@@ -20,25 +20,47 @@ const SignInValidation = Yup.object().shape({
 export const Main = () => {
   const { enqueueSnackbar } = Notistack.useSnackbar();
   const { customNavigate } = Hooks.useNavigate();
+  const token = window.location.search.substring(1).replace("token=", "");
 
   const onSubmit = (
     values: main.Form,
     formikHelpers: Formik.FormikHelpers<main.Form>
   ) => {
-    Api.Server.Request("signin", values)
-      .then((res) => {
-        localStorage.setItem("bdtoken", res.token);
-        localStorage.setItem("refreshToken", res.refreshToken);
-        formikHelpers.setSubmitting(false);
+    const callback = () => {
+      Api.Server.Request("signin", values)
+        .then((res) => {
+          localStorage.setItem("bdtoken", res.token);
+          localStorage.setItem("refreshToken", res.refreshToken);
+          formikHelpers.setSubmitting(false);
           customNavigate("/");
           window.location.reload();
-      })
-      .catch((err) => {
-        enqueueSnackbar(`Error: ${err.response.data.message}`, {
-          variant: "error",
+        })
+        .catch((err) => {
+          enqueueSnackbar(`Error: ${err.response.data.message}`, {
+            variant: "error",
+          });
+          formikHelpers.setSubmitting(false);
         });
-        formikHelpers.setSubmitting(false);
-      });
+    };
+    if (token) {
+      localStorage.setItem("bdtoken", token);
+      Api.Server.Request("verify", values)
+        .then((res) => {
+          localStorage.setItem("bdtoken", res.token);
+          enqueueSnackbar("Email verified Successfully!", {
+            variant: "success",
+          });
+          formikHelpers.setSubmitting(false);
+          customNavigate("/");
+        })
+        .catch((err) => {
+          enqueueSnackbar(`Error: ${err.response.data.message}`, {
+            variant: "error",
+          });
+          formikHelpers.setSubmitting(false);
+        });
+      callback();
+    } else callback();
   };
 
   return (

@@ -2,6 +2,7 @@ import * as Mui from "@mui/material";
 import * as MuiIcons from "@mui/icons-material";
 import * as Pages from "src/app/pages";
 import * as Router from "react-router-dom";
+import * as Components from "src/app/components";
 
 export const ProfileCard = ({
   title,
@@ -52,11 +53,13 @@ export const ProfileCard = ({
       sx={{ p: 1, maxHeight: 600, overflow: "auto", mt: 1 }}
     >
       {role &&
-        books?.map((book, index) => (
-          <Mui.Grid item xs key={index}>
-            <Pages.Books.Views.BookCard bookInfo={book} role={role} />
-          </Mui.Grid>
-        ))}
+        ((!books?.length && <Components.NothigToShow />) ||
+          books?.map((book, index) => (
+            <Mui.Grid item xs key={index}>
+              <Pages.Books.Views.BookCard bookInfo={book} role={role} />
+            </Mui.Grid>
+          )))}
+      {!role && !books?.length && <Components.NothigToShow />}
       {notifications?.map((notification, index) => (
         <Mui.Grid item xs={12} key={index} align="center">
           <Pages.Profile.Views.Notification {...notification} />

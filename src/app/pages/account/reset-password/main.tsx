@@ -4,6 +4,7 @@ import * as Formik from "formik";
 import * as Yup from "yup";
 import * as Notistack from "notistack";
 import * as Hooks from "src/app/hooks";
+import * as Api from "src/api";
 
 const ResetValidation = Yup.object().shape({
   password: Yup.string()
@@ -21,15 +22,30 @@ const ResetValidation = Yup.object().shape({
 export const Main = () => {
   const { customNavigate } = Hooks.useNavigate();
   const { enqueueSnackbar } = Notistack.useSnackbar();
+  localStorage.setItem(
+    "bdtoken",
+    window.location.search.substring(1).replace("token=", "")
+  );
 
-  const onSubmit = async (
+  const onSubmit = (
     values: main.Form,
     formikHelpers: Formik.FormikHelpers<main.Form>
   ) => {
-    console.log(values);
-    formikHelpers.setSubmitting(false);
-    enqueueSnackbar("Password Resetted Successfully!", { variant: "success" });
-    customNavigate("/");
+    Api.Server.Request("reset", values)
+      .then((res) => {
+        localStorage.setItem("bdtoken", res.token);
+        enqueueSnackbar("Password Resetted Successfully!", {
+          variant: "success",
+        });
+        formikHelpers.setSubmitting(false);
+        customNavigate("/");
+      })
+      .catch((err) => {
+        enqueueSnackbar(`Error: ${err.response.data.message}`, {
+          variant: "error",
+        });
+        formikHelpers.setSubmitting(false);
+      });
   };
 
   return (

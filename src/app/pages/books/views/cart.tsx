@@ -2,11 +2,12 @@ import * as Mui from "@mui/material";
 import * as Pages from "src/app/pages";
 import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
+import * as Components from "src/app/components";
 
 export const Cart = () => {
   const { books } = Hooks.useGetBooks("cart");
   const buyed = Hooks.useGetBooks("buy");
-  console.log(buyed);
+
   return (
     <>
       <Mui.Grid container>
@@ -15,6 +16,7 @@ export const Cart = () => {
             My Cart
           </Mui.Typography>
         </Mui.Grid>
+        {!books?.length && <Components.NothigToShow />}
         {books?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="cart" />
@@ -25,6 +27,7 @@ export const Cart = () => {
             Buy requested
           </Mui.Typography>
         </Mui.Grid>
+        {!buyed.books?.length && <Components.NothigToShow />}
         {buyed.books?.map((book, index) => (
           <Mui.Grid item xs key={index}>
             <Pages.Books.Views.BookCard bookInfo={book} role="buy" />
