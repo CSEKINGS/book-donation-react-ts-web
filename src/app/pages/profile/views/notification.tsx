@@ -50,7 +50,7 @@ export const Notification = ({
             position="absolute"
             sx={{ right: 5, bottom: 5 }}
           >
-            {time}
+            {new Date(time).toLocaleDateString()}
           </Mui.Typography>
         </Mui.CardContent>
       </Mui.CardActionArea>
