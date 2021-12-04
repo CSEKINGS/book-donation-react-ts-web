@@ -1,7 +1,24 @@
-#Book Donation
+# Book Donation
 
-#Package installation
-`npm i`
+Check out current hosting here: https://bookd-web.herokuapp.com
 
-#RUN
-`npm run dev`
+## Installation
+
+1. Clone the repository
+
+   ```sh
+   git clone https://github.com/CSEKINGS/book-donation-react-ts-web.git
+   ```
+
+2. Install NPM packages
+
+   ```sh
+   npm install
+   ```
+
+3. Run
+
+   ```sh
+   npx vite
+   ```
+
