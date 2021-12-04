@@ -44,7 +44,7 @@ export const Main = () => {
     };
     if (token) {
       localStorage.setItem("bdtoken", token);
-      Api.Server.Request("verify", values)
+      Api.Server.Request("verify")
         .then((res) => {
           localStorage.setItem("bdtoken", res.token);
           enqueueSnackbar("Email verified Successfully!", {
