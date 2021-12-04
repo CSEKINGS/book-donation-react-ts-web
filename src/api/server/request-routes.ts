@@ -4,8 +4,8 @@ export const Routes: {
   [key: string]: Pick<Axios.AxiosRequestConfig, "method" | "url">;
 } = {
   signin: { method: "post", url: "auth/login" },
-  signup: { method: "post", url: "auth/register" },
   verify: { method: "get", url: "auth/verify" },
+  signup: { method: "post", url: "auth/register" },
   forget: { method: "post", url: "auth/forget" },
   reset: { method: "post", url: "auth/reset" },
   token: { method: "get", url: "token" },
