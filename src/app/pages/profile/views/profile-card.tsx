@@ -59,7 +59,7 @@ export const ProfileCard = ({
               <Pages.Books.Views.BookCard bookInfo={book} role={role} />
             </Mui.Grid>
           )))}
-      {!role && !books?.length && <Components.NothigToShow />}
+      {!role && !notifications?.length && <Components.NothigToShow />}
       {notifications?.map((notification, index) => (
         <Mui.Grid item xs={12} key={index} align="center">
           <Pages.Profile.Views.Notification {...notification} />
