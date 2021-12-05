@@ -3,7 +3,7 @@ import * as MuiIcons from "@mui/icons-material";
 import * as Hooks from "src/app/hooks";
 import React from "react";
 
-export const LandingInfo = ({ title, content }: landingInfo.Props) => {
+export const LandingInfo = ({ title, content, index }: landingInfo.Props) => {
   const { customNavigate } = Hooks.useNavigate();
   return (
     <>
@@ -26,7 +26,7 @@ export const LandingInfo = ({ title, content }: landingInfo.Props) => {
           </Mui.Typography>
           <Mui.Button
             variant="contained"
-            sx={{ maxWidth: 150 }}
+            sx={{ maxWidth: 150, display: !index ? "flex" : "none" }}
             onClick={() => customNavigate("account/signup")}
             endIcon={<MuiIcons.ArrowForward />}
           >
@@ -55,5 +55,6 @@ export declare namespace landingInfo {
   export interface Props {
     title: string;
     content: React.ReactNode;
+    index: number;
   }
 }

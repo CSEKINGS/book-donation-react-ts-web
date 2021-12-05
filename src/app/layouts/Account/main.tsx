@@ -5,7 +5,7 @@ import * as Assets from "src/assets";
 
 export const Main = () => (
   <Mui.Grid container justifyContent="center" alignItems="center">
-    <Mui.Grid item xs={12} md={5}>
+    <Mui.Grid item xs={12} md={5} sx={{ position: "relative" }}>
       <Mui.Container maxWidth="xs" sx={{ my: { xs: 5, md: 1 } }}>
         <MuiIcons.AutoAwesome color="primary" />
         <Router.Outlet />
@@ -14,7 +14,7 @@ export const Main = () => (
     <Mui.Grid item xs={7} sx={{ display: { xs: "none", md: "flex" } }}>
       <Mui.CardMedia
         component="img"
-        image={Assets.landingImages.AccountImage}
+        image={Assets.landingImages.AuthImage}
         sx={{
           minHeight: "100vh",
           borderRadius: 20,

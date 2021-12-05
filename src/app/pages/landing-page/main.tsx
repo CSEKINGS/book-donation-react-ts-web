@@ -4,9 +4,19 @@ import * as Components from "src/app/components";
 import * as Constants from "src/constants";
 
 export const Main = () => (
-  <Mui.Grid container alignItems="center" justifyContent="center">
+  <Mui.Grid
+    container
+    alignItems="center"
+    justifyContent="center"
+    // sx={{
+    //   background: 'url("src/assets/landing-images/564_generated.jpg")',
+    //   backgroundRepeat: "no-repeat",
+    //   backgroundAttachment: "fixed",
+    //   backgroundSize: "cover",
+    // }}
+  >
     {Constants.landingDetail.map((value, index) => (
-      <Components.LandingInfo key={index} {...value} />
+      <Components.LandingInfo key={index} index={index} {...value} />
     ))}
     <Mui.Fab
       variant="extended"
