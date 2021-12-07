@@ -6,7 +6,9 @@ import * as ReactQuery from "react-query";
 import * as App from "src/app";
 
 export const Main = () => {
-  const queryClient = new ReactQuery.QueryClient();
+  const queryClient = new ReactQuery.QueryClient({
+    defaultOptions: { queries: { refetchOnWindowFocus: false } },
+  });
   return (
     <Themes.Main>
       <ReactQuery.QueryClientProvider client={queryClient}>
