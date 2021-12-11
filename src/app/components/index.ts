@@ -7,3 +7,4 @@ export * from "./loading-button";
 export * from "./profile-selector";
 export * from "./select-feild";
 export * from "./nothing-to-show";
+export * from "./provider";

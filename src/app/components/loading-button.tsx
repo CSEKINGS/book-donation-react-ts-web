@@ -10,7 +10,7 @@ export const LoadingButton = (props: MuiLab.LoadingButtonProps) => {
       variant="contained"
       sx={{ height: 53 }}
       loading={formikHelpers.isSubmitting}
-      loadingPosition="end"
+      // loadingPosition="end"
       {...props}
     />
   );

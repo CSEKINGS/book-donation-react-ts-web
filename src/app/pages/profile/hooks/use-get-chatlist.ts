@@ -10,9 +10,9 @@ export const useGetChatList = (): chatList.Type => {
     },
   } = Router.useLocation();
   const {
-    user: { _id },
-  } = React.useContext(Hooks.Search);
-  console.log(userID, _id);
+    user,
+  } = Hooks.useSignInCheck();
+  console.log(userID, user?._id);
   return new Array(20).fill(undefined).map((val, index) => ({
     time: new Date(Faker.date.past()).toLocaleDateString(),
     message: Faker.lorem.sentence(),

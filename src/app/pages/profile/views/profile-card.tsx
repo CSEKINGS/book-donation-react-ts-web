@@ -61,7 +61,7 @@ export const ProfileCard = ({
           )))}
       {!role && !notifications?.length && <Components.NothigToShow />}
       {notifications?.map((notification, index) => (
-        <Mui.Grid item xs={12} key={index} align="center">
+        <Mui.Grid item xs={12} key={index}>
           <Pages.Profile.Views.Notification {...notification} />
         </Mui.Grid>
       ))}

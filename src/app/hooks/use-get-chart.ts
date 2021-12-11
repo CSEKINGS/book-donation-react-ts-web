@@ -2,15 +2,14 @@ import * as ChartType from "chart.js";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
 import * as React from "react";
-import * as Faker from "faker";
 
 export const useGetChart = (): {
   chart: ChartType.ChartData<"doughnut", number[], unknown>;
   loading: boolean;
 } => {
-  const { user } = React.useContext(Hooks.Search);
+  const { user } = Hooks.useSignInCheck();
   const { data, isFetching } = Api.Server.useRequest(
-    ["chart", user._id],
+    ["chart", user?._id as string],
     "dashboard"
   );
   return {

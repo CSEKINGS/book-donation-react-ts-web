@@ -9,7 +9,7 @@ export const Chat = ({ message, time, type }: chat.Props) => {
       notification: { userID, photo },
     },
   } = Router.useLocation();
-  const { user } = React.useContext(Hooks.Search);
+  const { user } = Hooks.useSignInCheck();
   return (
     <Mui.Stack
       sx={{
@@ -25,7 +25,7 @@ export const Chat = ({ message, time, type }: chat.Props) => {
       alignSelf={type === "receiver" ? "flex-start" : "flex-end"}
       position="relative"
     >
-      <Mui.Avatar src={type === "receiver" ? photo : user.profile} />
+      <Mui.Avatar src={type === "receiver" ? photo : user?.profile} />
       <Mui.Typography variant="body1">{message}</Mui.Typography>
       <Mui.Typography
         variant="caption"

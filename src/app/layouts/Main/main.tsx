@@ -9,11 +9,7 @@ import * as Pages from "src/app/pages";
 
 export const Main = () => {
   const { pathname } = Router.useLocation();
-  const {
-    search,
-    setSearch,
-    user: { signin, profile },
-  } = React.useContext(Hooks.Search);
+  const { user } = Hooks.useSignInCheck();
 
   const landing = Router.matchPath(
     {
@@ -35,7 +31,7 @@ export const Main = () => {
 
   const { notifications, loading } = Pages.Profile.Hooks.useGetNotifications();
 
-  setSearch(searchRoute ? search : "");
+  // setSearch(searchRoute ? search : "");
 
   return (
     <Mui.Box>
@@ -58,7 +54,7 @@ export const Main = () => {
           ) : (
             <Layouts.MainLayout.Views.Dashboard />
           )}
-          {signin ? (
+          {user?.signin ? (
             <Mui.IconButton
               component={Router.Link}
               to="profile"
@@ -82,10 +78,10 @@ export const Main = () => {
                     </Mui.Avatar>
                   }
                 >
-                  <Mui.Avatar src={profile} />
+                  <Mui.Avatar src={user?.profile} />
                 </Mui.Badge>
               ) : (
-                <Mui.Avatar src={profile} />
+                <Mui.Avatar src={user?.profile} />
               )}
             </Mui.IconButton>
           ) : (

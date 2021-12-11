@@ -1,14 +1,17 @@
 import * as Api from "src/api";
 
-export const useSignInCheck = (): profile.Info => {
-  const { data } = Api.Server.useRequest(
+export const useSignInCheck = (): profile.Type => {
+  const { data, isFetching } = Api.Server.useRequest(
     ["user", localStorage.getItem("bdtoken") || ""],
     "user"
   );
   delete data?.userLog;
-  return data
-    ? { signin: true, profile: data?.photo, ...data }
-    : { signin: false };
+  return {
+    user: data
+      ? { signin: true, profile: data?.photo, ...data }
+      : { signin: false },
+    loading: isFetching,
+  };
 };
 
 export declare namespace profile {
@@ -22,5 +25,5 @@ export declare namespace profile {
     address: string;
     signin: boolean;
   }
-  export type Type = { user: profile.Info };
+  export type Type = { user: profile.Info; loading: boolean };
 }

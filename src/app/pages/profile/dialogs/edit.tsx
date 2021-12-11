@@ -49,7 +49,6 @@ export const UserEdit = () => {
             });
             customNavigate(-1);
             formikHelpers.setSubmitting(false);
-            // window.location.reload();
           })
         )
         .catch((err) => {

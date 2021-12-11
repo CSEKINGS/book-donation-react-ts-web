@@ -33,7 +33,9 @@ export const Main = () => {
           localStorage.setItem("refreshToken", res.refreshToken);
           formikHelpers.setSubmitting(false);
           customNavigate("/");
-          window.location.reload();
+          enqueueSnackbar("Login Successfull!", {
+            variant: "success",
+          });
         })
         .catch((err) => {
           enqueueSnackbar(`Error: ${err.response.data.message}`, {

@@ -20,7 +20,10 @@ export const Profiler = ({
 }: profiler.Props & Mui.AvatarProps) => {
   const formikHelpers = Formik.useFormikContext();
   const handleOnChange = async (e: React.FormEvent<HTMLInputElement>) =>
-    formikHelpers.setFieldValue(name, await toBase64(e.target?.files[0]));
+    formikHelpers.setFieldValue(
+      name,
+      await toBase64((e.target as unknown as { files: Blob[] })?.files[0])
+    );
 
   return (
     <Mui.Box sx={{ width }}>

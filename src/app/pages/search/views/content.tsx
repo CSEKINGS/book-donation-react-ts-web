@@ -10,7 +10,7 @@ export const Content = () => {
     state: { author, categeory, role },
   } = Router.useLocation();
   const { books, loading } = Hooks.useGetBooks(role || "books");
-  const { search } = React.useContext(Hooks.Search);
+  const [search] = Router.useSearchParams();
   const [authorVal, setAuthor] = React.useState(author || "");
   const [categeoryVal, setCategeory] = React.useState(categeory || "");
   const authorIndex = books
@@ -27,9 +27,9 @@ export const Content = () => {
   return (
     <Mui.Grid container>
       <Mui.Grid item xs={12} md={6}>
-        {search && (
+        {search.get("q") && (
           <Mui.Typography variant="h5" noWrap>
-            Search result for... {search}
+            Search result for... {search.get("q")}
           </Mui.Typography>
         )}
       </Mui.Grid>
@@ -62,7 +62,9 @@ export const Content = () => {
       {books
         ?.filter(
           (book) =>
-            book.name.toLowerCase().includes(search.toLowerCase()) &&
+            book.name
+              .toLowerCase()
+              .includes(search.get("q")?.toLowerCase() || "") &&
             book.author.toLowerCase().includes(authorVal.toLowerCase()) &&
             book.categeory.toLowerCase().includes(categeoryVal.toLowerCase())
         )

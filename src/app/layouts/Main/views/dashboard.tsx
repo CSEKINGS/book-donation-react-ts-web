@@ -6,9 +6,9 @@ import * as Hooks from "src/app/hooks";
 import * as React from "react";
 
 export const Dashboard = () => {
+  const [search] = Router.useSearchParams();
   const { pathname } = Router.useLocation();
   const { customNavigate } = Hooks.useNavigate();
-  const { search, setSearch } = React.useContext(Hooks.Search);
 
   const searchRoute = Router.matchPath(
     {
@@ -42,13 +42,13 @@ export const Dashboard = () => {
           ),
         }}
         onClick={() => customNavigate("search")}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => customNavigate(`search?q=${e.target.value}`)}
         fullWidth={searchRoute ? true : false}
-        value={search}
+        value={search.get("q")}
       />
       <Mui.IconButton
         sx={{ display: searchRoute ? "flex" : "none" }}
-        onClick={() => customNavigate(-1)}
+        onClick={() => customNavigate("dashboard")}
       >
         <MuiIcons.Close />
       </Mui.IconButton>

@@ -117,13 +117,6 @@ export const components = (): Pick<Mui.ThemeOptions, "components"> => {
           },
         },
       },
-      MuiSelect: {
-        styleOverrides: {
-          root: {
-            zIndex: 1,
-          },
-        },
-      },
       MuiTableCell: {
         styleOverrides: {
           root: {

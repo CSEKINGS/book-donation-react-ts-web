@@ -25,7 +25,9 @@ export const Delete = () => {
           variant: "success",
         });
         setLoading(false);
-        window.location.reload();
+        enqueueSnackbar("Your Account Deleted Successfully!", {
+          variant: "success",
+        });
       })
       .catch((err) => {
         enqueueSnackbar(`Error: ${err.response.data.message}`, {
