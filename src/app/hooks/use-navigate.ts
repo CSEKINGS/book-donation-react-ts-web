@@ -4,8 +4,6 @@ export const useNavigate = () => {
   const navigate = Router.useNavigate();
 
   const { state } = Router.useLocation();
-  //   const [searchParams] = Router.useSearchParams();
-  //   console.log(state, pathname, searchParams);
 
   const customNavigate: UseNavigate.CustomNavigate = (to, options) =>
     navigate(to, {
