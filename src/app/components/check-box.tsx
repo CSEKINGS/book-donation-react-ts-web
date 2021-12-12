@@ -6,7 +6,11 @@ export const CheckBox = (props: checkBox.Type) => (
   <Formik.Field component={MuiCheckBox} type="checkbox" {...props} />
 );
 
-export const MuiCheckBox = ({ label, ...props }: FormikMui.TextFieldProps) => (
+export const MuiCheckBox = ({
+  label,
+  helperText,
+  ...props
+}: FormikMui.TextFieldProps) => (
   <Mui.FormControlLabel
     control={
       <Mui.Checkbox

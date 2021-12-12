@@ -43,7 +43,7 @@ export const Content = () => {
             }
           >
             {books?.map((book, index) => (
-              <Mui.MenuItem value={index}>{book.author}</Mui.MenuItem>
+              <Mui.MenuItem key={index} value={index}>{book.author}</Mui.MenuItem>
             ))}
           </Components.SelectField>
           <Components.SelectField
@@ -54,7 +54,7 @@ export const Content = () => {
             }
           >
             {books?.map((book, index) => (
-              <Mui.MenuItem value={index}>{book.categeory}</Mui.MenuItem>
+              <Mui.MenuItem key={index} value={index}>{book.categeory}</Mui.MenuItem>
             ))}
           </Components.SelectField>
         </Mui.Stack>

@@ -4,7 +4,12 @@ import * as Formik from "formik";
 import * as Yup from "yup";
 
 describe("CheckBox", () => {
-  const data = { name: "rememberMe", label: "Remember me?" };
+  const data = {
+    name: "textField",
+    label: "TextField",
+    type: "text",
+    placeholder: "textField placeholder",
+  };
   const validation = Yup.object().shape({
     [data.name]: Yup.boolean().required(`No ${data.name} provided`),
   });
@@ -19,7 +24,14 @@ describe("CheckBox", () => {
           validationSchema={validation}
           onSubmit={() => {}}
         >
-          {() => <Components.CheckBox name={data.name} label={data.label} />}
+          {() => (
+            <Components.FormField
+              name={data.name}
+              label={data.label}
+              type={data.type}
+              placeholder={data.placeholder}
+            />
+          )}
         </Formik.Formik>
       </Components.AppProvider>,
       container
@@ -33,8 +45,9 @@ describe("CheckBox", () => {
 
   it("Render correctly", () => {
     const input = container.querySelector("input");
-    expect(input?.value).toBeFalsy();
     expect(input?.name).toBe(data.name);
+    expect(input?.type).toBe(data.type);
+    expect(input?.placeholder).toBe(data.placeholder);
     const label = container.querySelector("label");
     expect(label?.textContent).toBe(data.label);
   });
