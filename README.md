@@ -65,17 +65,17 @@ Check out current hosting here: https://bookd-web.herokuapp.com
 3. Run
 
    ```sh
-   npm dev
+   npm run dev
    ```
 
 4. Test
 
    ```sh
-   npm test
+   npm run test
    ```
 
 5. Build
 
    ```sh
-   npm build
+   npm run build
    ```
