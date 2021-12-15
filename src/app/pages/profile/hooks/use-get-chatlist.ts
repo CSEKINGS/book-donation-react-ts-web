@@ -1,18 +1,14 @@
 import * as Hooks from "src/app/hooks";
 import * as Router from "react-router-dom";
-import * as React from "react";
 import * as Faker from "faker";
 
-export const useGetChatList = (): chatList.Type => {
+export const useGetChatList = (): chatList.Props => {
   const {
     state: {
       notification: { userID },
     },
   } = Router.useLocation();
-  const {
-    user,
-  } = Hooks.useSignInCheck();
-  console.log(userID, user?._id);
+  const { user } = Hooks.useSignInCheck();
   return new Array(20).fill(undefined).map((val, index) => ({
     time: new Date(Faker.date.past()).toLocaleDateString(),
     message: Faker.lorem.sentence(),
@@ -21,9 +17,10 @@ export const useGetChatList = (): chatList.Type => {
 };
 
 export declare namespace chatList {
-  export type Type = {
+  export type Props = chatList.chats[];
+  export interface chats {
     time: string;
     message: string;
     type: "sender" | "receiver";
-  }[];
+  }
 }

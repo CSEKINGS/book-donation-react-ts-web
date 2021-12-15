@@ -4,6 +4,7 @@ import * as Components from "src/app/components";
 import * as Router from "react-router-dom";
 import * as Pages from "src/app/pages";
 import * as React from "react";
+import * as Socket from "src/api/socket";
 
 export const Chat = () => {
   const {
@@ -12,13 +13,17 @@ export const Chat = () => {
     },
   } = Router.useLocation();
   const [chatMessage, setChatMessage] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
 
   const chatList = Pages.Profile.Hooks.useGetChatList();
 
-  const handleSend = () => {
-    console.log(chatMessage);
-  };
+  React.useEffect(() => {
+    Socket.socket.on(
+      "message-received",
+      (msg: Pages.Profile.Hooks.chatList.chats) => console.log(msg)
+    );
+  }, [chatMessage]);
+
+  const handleSend = () => Socket.socket.emit("message-sent", chatMessage);
 
   React.useLayoutEffect(() => {
     document
@@ -33,7 +38,6 @@ export const Chat = () => {
       fullScreen
       profile={photo}
       back={name}
-      loading={loading}
     >
       <Mui.DialogContent>
         <Mui.Stack

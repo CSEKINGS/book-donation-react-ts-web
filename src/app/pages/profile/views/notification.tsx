@@ -10,6 +10,7 @@ export const Notification = ({
   time,
 }: notification.Props) => {
   const { customNavigate } = Hooks.useNavigate();
+  const { user } = Hooks.useSignInCheck();
   return (
     <Mui.Card
       sx={{
@@ -20,7 +21,15 @@ export const Notification = ({
       }}
       onClick={() =>
         customNavigate("chat", {
-          state: { notification: { userID, bookID, photo, name } },
+          state: {
+            notification: {
+              chatId: userID + user?._id,
+              userID,
+              bookID,
+              photo,
+              name,
+            },
+          },
         })
       }
     >

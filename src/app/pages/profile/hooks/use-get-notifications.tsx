@@ -1,7 +1,6 @@
 import * as Pages from "src/app/pages";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
-import * as React from "react";
 
 export const useGetNotifications = (): Notifications.Type => {
   const { user } = Hooks.useSignInCheck();
