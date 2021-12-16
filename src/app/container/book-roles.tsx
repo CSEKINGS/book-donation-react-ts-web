@@ -129,11 +129,11 @@ export const BookRole = ({
                 book={book}
                 bookAction="locate"
               />
-              <Container.ActionButtons
+              {/* <Container.ActionButtons
                 disabled={loading}
                 book={book}
                 bookAction="message"
-              />
+              /> */}
               <Container.ActionButtons
                 disabled={loading}
                 book={book}

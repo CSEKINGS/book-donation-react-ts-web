@@ -61,6 +61,6 @@ export declare namespace bookCard {
     location: number[];
     userID?: string;
     wishedUsers?: string[];
-    receiverID?: { userID: string; message: string; time: string }[];
+    receiverID?: string[];
   }
 }

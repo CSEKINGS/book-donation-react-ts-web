@@ -13,7 +13,7 @@ export const useGetNotifications = (): Notifications.Type => {
 
 export declare namespace Notifications {
   export type Type = {
-    notifications: Pages.Profile.Views.notification.Props[];
+    notifications: { [key: string]: Pages.Profile.Views.notification.Props };
     loading: boolean;
   };
 }

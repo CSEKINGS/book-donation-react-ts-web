@@ -29,7 +29,7 @@ export const Main = () => {
     pathname
   );
 
-  const { notifications, loading } = Pages.Profile.Hooks.useGetNotifications();
+  const { notifications } = Pages.Profile.Hooks.useGetNotifications();
 
   // setSearch(searchRoute ? search : "");
 
@@ -60,7 +60,7 @@ export const Main = () => {
               to="profile"
               sx={{ border: 0 }}
             >
-              {notifications?.length ? (
+              {notifications && Object.values(notifications).length ? (
                 <Mui.Badge
                   overlap="circular"
                   anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -74,7 +74,7 @@ export const Main = () => {
                         fontSize: 10,
                       }}
                     >
-                      {notifications?.length}
+                      {notifications && Object.values(notifications).length}
                     </Mui.Avatar>
                   }
                 >

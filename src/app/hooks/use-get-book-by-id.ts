@@ -2,11 +2,15 @@ import * as Router from "react-router-dom";
 import * as Pages from "src/app/pages";
 import * as Api from "src/api";
 
-export const useGetBooksByID = (): bookDetail.Type => {
+export const useGetBooksByID = (bookID?: string): bookDetail.Type => {
   const { bookId } = Router.useParams();
-  const { data, isFetching } = Api.Server.useRequest(["book",bookId], "book", {
-    bookId,
-  });
+  const { data, isFetching } = Api.Server.useRequest(
+    ["book", bookId || bookID as string],
+    "book",
+    {
+      bookId: bookId || bookID,
+    }
+  );
 
   return {
     book: data,

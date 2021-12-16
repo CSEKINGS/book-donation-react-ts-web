@@ -13,6 +13,7 @@ export const Routes: {
   userEdit: { method: "put", url: "user/edit" },
   userDelete: { method: "delete", url: "user/delete" },
   notification: { method: "get", url: "user/notification" },
+  chat: { method: "post", url: "user/chat" },
   cartList: { method: "get", url: "user/wishlist" },
   cartRemove: { method: "post", url: "user/removewish" },
   cart: { method: "post", url: "user/wish" },

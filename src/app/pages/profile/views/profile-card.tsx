@@ -59,12 +59,18 @@ export const ProfileCard = ({
               <Pages.Books.Views.BookCard bookInfo={book} role={role} />
             </Mui.Grid>
           )))}
-      {!role && !notifications?.length && <Components.NothigToShow />}
-      {notifications?.map((notification, index) => (
-        <Mui.Grid item xs={12} key={index}>
-          <Pages.Profile.Views.Notification {...notification} />
-        </Mui.Grid>
-      ))}
+      {!role && notifications && !Object.values(notifications)?.length && (
+        <Components.NothigToShow />
+      )}
+      {notifications &&
+        Object.values(notifications).map((notification, index) => (
+          <Mui.Grid item xs={12} key={index}>
+            <Pages.Profile.Views.Notification
+              user={notification.user}
+              message={notification.message}
+            />
+          </Mui.Grid>
+        ))}
     </Mui.Grid>
   </Mui.Stack>
 );
@@ -75,7 +81,7 @@ export declare namespace profileCard {
     books?: Pages.Books.Views.bookCard.book[];
     path?: string;
     role?: bookRole.Roles;
-    notifications?: Pages.Profile.Views.notification.Props[];
+    notifications?: { [key: string]: Pages.Profile.Views.notification.Props };
     onClick?: () => void;
   }
 }

@@ -2,15 +2,12 @@ import * as Mui from "@mui/material";
 import * as Hooks from "src/app/hooks";
 
 export const Notification = ({
-  bookID,
-  userID,
-  photo,
-  name,
-  message,
-  time,
+  user: { photo, name },
+  message: { message, time, ...IDS },
 }: notification.Props) => {
   const { customNavigate } = Hooks.useNavigate();
   const { user } = Hooks.useSignInCheck();
+  const { book } = Hooks.useGetBooksByID(IDS.bookID);
   return (
     <Mui.Card
       sx={{
@@ -23,12 +20,11 @@ export const Notification = ({
         customNavigate("chat", {
           state: {
             notification: {
-              chatId: userID + user?._id,
-              userID,
-              bookID,
+              ...IDS,
               photo,
               name,
             },
+            book,
           },
         })
       }
@@ -48,9 +44,12 @@ export const Notification = ({
               {name}
             </Mui.Typography>
             <Mui.Typography variant="body1" textAlign="initial" noWrap>
-              {message}
+              {IDS.userID === user._id ? `You: ${message}` : message}
             </Mui.Typography>
           </Mui.Stack>
+          <Mui.Typography variant="caption" textAlign="initial" noWrap>
+            {book?.name} book
+          </Mui.Typography>
           <Mui.Typography
             variant="caption"
             color="text.secondary"
@@ -59,7 +58,7 @@ export const Notification = ({
             position="absolute"
             sx={{ right: 5, bottom: 5 }}
           >
-            {new Date(time).toLocaleDateString()}
+            {new Date(parseInt(time)).toLocaleDateString()}
           </Mui.Typography>
         </Mui.CardContent>
       </Mui.CardActionArea>
@@ -68,11 +67,16 @@ export const Notification = ({
 };
 export declare namespace notification {
   export interface Props {
-    bookID: string;
-    userID: string;
-    photo: string;
-    name: string;
-    message: string;
-    time: string;
+    message: {
+      bookID: string;
+      userID: string;
+      chatId: string;
+      message: string;
+      time: string;
+    };
+    user: {
+      photo: string;
+      name: string;
+    };
   }
 }

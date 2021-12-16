@@ -19,15 +19,16 @@ export const useGetBooks = (role: bookRole.Roles): Books.Type => {
         (book: Pages.Books.Views.bookCard.book) =>
           book.userID !== user?._id &&
           book.wishedUsers?.indexOf(user?._id as string) === -1 &&
-          !JSON.stringify(book.receiverID).includes(user?._id as string)
+          book.receiverID?.indexOf(user?._id as string) === -1
       ),
       related: data?.filter(
         (book: Pages.Books.Views.bookCard.book) =>
-          book.userID !== user?._id && book.wishedUsers?.indexOf(user?._id as string) === -1
+          book.userID !== user?._id &&
+          book.wishedUsers?.indexOf(user?._id as string) === -1
       ),
       buy: data?.filter(
         (book: Pages.Books.Views.bookCard.book) =>
-          book.receiverID && JSON.stringify(book.receiverID).includes(user?._id as string)
+          book.receiverID?.indexOf(user?._id as string) !== -1
       ),
     }[role],
     loading: isFetching,

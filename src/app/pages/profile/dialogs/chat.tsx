@@ -5,39 +5,56 @@ import * as Router from "react-router-dom";
 import * as Pages from "src/app/pages";
 import * as React from "react";
 import * as Socket from "src/api/socket";
+import * as Hooks from "src/app/hooks";
 
 export const Chat = () => {
   const {
     state: {
-      notification: { photo, name },
+      notification: { photo, name, chatId },
+      book,
     },
   } = Router.useLocation();
+  const { user } = Hooks.useSignInCheck();
+
+  const [chats, setChats] = React.useState<
+    Pages.Profile.Hooks.chatList.chats[]
+  >([]);
+
   const [chatMessage, setChatMessage] = React.useState("");
 
-  const chatList = Pages.Profile.Hooks.useGetChatList();
+  const { chatList, loading } = Pages.Profile.Hooks.useGetChatList();
 
   React.useEffect(() => {
-    Socket.socket.on(
-      "message-received",
-      (msg: Pages.Profile.Hooks.chatList.chats) => console.log(msg)
-    );
+    Socket.socket.on("message-received", (msg) => setChats([...chats, msg]));
   }, [chatMessage]);
 
-  const handleSend = () => Socket.socket.emit("message-sent", chatMessage);
+  const handleSend = () => {
+    setChatMessage("");
+    Socket.socket.emit("message-sent", {
+      chatId,
+      userID: user._id,
+      message: chatMessage,
+      time: new Date().getTime(),
+    });
+  };
+
+  React.useLayoutEffect(() => {
+    setChats(chatList);
+  }, [chatList]);
 
   React.useLayoutEffect(() => {
     document
       .getElementById("chat-list")
       ?.scrollTo({ top: 1000000, behavior: "smooth" });
-  }, [document.getElementById("chat-list"), chatList]);
-
+  }, [document.getElementById("chat-list"), chats]);
   return (
     <Components.Dialog
       open={true}
       color="error"
       fullScreen
       profile={photo}
-      back={name}
+      back={`${name} for ${book.name} book`}
+      loading={loading}
     >
       <Mui.DialogContent>
         <Mui.Stack
@@ -50,7 +67,7 @@ export const Chat = () => {
             overflowY: "auto",
           }}
         >
-          {chatList.map((values, index) => (
+          {chats?.map((values, index) => (
             <Pages.Profile.Views.Chat {...values} key={index} />
           ))}
         </Mui.Stack>

@@ -1,26 +1,25 @@
-import * as Hooks from "src/app/hooks";
 import * as Router from "react-router-dom";
-import * as Faker from "faker";
+import * as Api from "src/api";
 
 export const useGetChatList = (): chatList.Props => {
   const {
     state: {
-      notification: { userID },
+      notification: { chatId },
     },
   } = Router.useLocation();
-  const { user } = Hooks.useSignInCheck();
-  return new Array(20).fill(undefined).map((val, index) => ({
-    time: new Date(Faker.date.past()).toLocaleDateString(),
-    message: Faker.lorem.sentence(),
-    type: index % 2 ? "sender" : "receiver",
-  }));
+  const { data, isFetching } = Api.Server.useRequest(
+    ["chats", chatId as string],
+    "chat",
+    { chatId }
+  );
+  return { chatList: data, loading: isFetching };
 };
 
 export declare namespace chatList {
-  export type Props = chatList.chats[];
+  export type Props = { chatList: chatList.chats[]; loading: boolean };
   export interface chats {
-    time: string;
+    time: string | number;
     message: string;
-    type: "sender" | "receiver";
+    userID: string;
   }
 }
