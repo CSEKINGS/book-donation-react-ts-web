@@ -4,7 +4,7 @@ import * as Requests from "./request-routes";
 import * as ReactQuery from "react-query";
 
 const client = Axios.default.create({
-  baseURL: Constants.API_CONFIG.baseURL,
+  baseURL: `${Constants.API_CONFIG.baseURL}/api/`,
 });
 
 export const Request = (options: string, data?: any) =>
