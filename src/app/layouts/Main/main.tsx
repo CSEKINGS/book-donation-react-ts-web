@@ -7,12 +7,14 @@ import * as Hooks from "src/app/hooks";
 import * as Pages from "src/app/pages";
 import * as Socket from "src/socket";
 import * as React from "react";
+import * as Assets from "src/assets";
 
 export const Main = () => {
+  const audio = new Audio(Assets.sound.Fruit);
   const { pathname } = Router.useLocation();
   const { user } = Hooks.useSignInCheck();
   const { notifications } = Pages.Profile.Hooks.useGetNotifications();
-
+  const [Msg, setMsg] = React.useState({ message: "", time: "", userID: "" });
   const landing = Router.matchPath(
     {
       path: "/",
@@ -31,6 +33,12 @@ export const Main = () => {
     pathname
   );
 
+  Socket.socket.on("message-received", (msg) => setMsg(msg));
+
+  React.useEffect(() => {
+    Msg.userID !== user._id && audio.play();
+  }, [Msg.message]);
+
   React.useEffect(() => {
     user?.signin
       ? notifications &&
@@ -39,7 +47,6 @@ export const Main = () => {
         )
       : null;
   }, [notifications]);
-  // setSearch(searchRoute ? search : "");
 
   return (
     <Mui.Box>
