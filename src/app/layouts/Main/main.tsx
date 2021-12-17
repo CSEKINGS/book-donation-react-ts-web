@@ -31,13 +31,14 @@ export const Main = () => {
     pathname
   );
 
-  React.useEffect(() => {
-    user?.signin &&
-      notifications &&
-      Object.values(notifications)?.forEach((notification) =>
-        API.Socket.socket.emit("online", notification.message.chatId)
-      );
-  }, [notifications]);
+  user?.signin
+    ? React.useEffect(() => {
+        notifications &&
+          Object.values(notifications)?.forEach((notification) =>
+            API.Socket.socket.emit("online", notification.message.chatId)
+          );
+      }, [notifications])
+    : null;
   // setSearch(searchRoute ? search : "");
 
   return (
@@ -81,7 +82,7 @@ export const Main = () => {
                         fontSize: 10,
                       }}
                     >
-                      {notifications && Object.values(notifications).length}
+                      {Object.values(notifications).length}
                     </Mui.Avatar>
                   }
                 >
