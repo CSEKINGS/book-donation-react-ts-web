@@ -7,10 +7,7 @@ import * as React from "react";
 export const useGetNotifications = (): Notifications.Type => {
   const { user } = Hooks.useSignInCheck();
   const [notification, setNotifications] = React.useState("");
-  Socket.socket.on("notifications", (msg) => {
-    console.log(msg);
-    setNotifications(msg);
-  });
+  Socket.socket.on("notifications", (msg) => setNotifications(msg));
   const { data, isFetching } = Api.Server.useRequest(
     ["notifications", user?._id as string, notification],
     "notification"
