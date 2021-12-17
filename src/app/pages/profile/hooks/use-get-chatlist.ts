@@ -1,5 +1,7 @@
 import * as Router from "react-router-dom";
 import * as Api from "src/api";
+import * as Socket from "src/socket";
+import * as React from "react";
 
 export const useGetChatList = (): chatList.Props => {
   const {
@@ -7,8 +9,10 @@ export const useGetChatList = (): chatList.Props => {
       notification: { chatId },
     },
   } = Router.useLocation();
+  const [Msg, setMsg] = React.useState({ message: "", time: "", userID: "" });
+  Socket.socket.on("message-received", (msg) => setMsg(msg));
   const { data, isFetching } = Api.Server.useRequest(
-    ["chats", chatId as string],
+    ["chats", chatId as string, Msg.message],
     "chat",
     { chatId }
   );

@@ -4,7 +4,7 @@ import * as Components from "src/app/components";
 import * as Router from "react-router-dom";
 import * as Pages from "src/app/pages";
 import * as React from "react";
-import * as API from "src/api";
+import * as Socket from "src/socket";
 import * as Hooks from "src/app/hooks";
 
 export const Chat = () => {
@@ -24,22 +24,18 @@ export const Chat = () => {
 
   const { chatList, loading } = Pages.Profile.Hooks.useGetChatList();
 
-  React.useEffect(() => {
-    API.Socket.socket.on("message-received", (msg) => setChats([...chats, msg]));
-  }, [chatMessage]);
-
   const handleSend = () => {
-    setChatMessage("");
-    API.Socket.socket.emit("message-sent", {
+    Socket.socket.emit("message-sent", {
       chatId,
       userID: user._id,
       message: chatMessage,
       time: new Date().getTime(),
     });
+    setChatMessage("");
   };
 
   React.useLayoutEffect(() => {
-    setChats(chatList);
+    chatList && setChats(chatList);
   }, [chatList]);
 
   React.useLayoutEffect(() => {
@@ -47,13 +43,14 @@ export const Chat = () => {
       .getElementById("chat-list")
       ?.scrollTo({ top: 1000000, behavior: "smooth" });
   }, [document.getElementById("chat-list"), chats]);
+
   return (
     <Components.Dialog
       open={true}
       color="error"
       fullScreen
       profile={photo}
-      back={`${name} for ${book.name} book`}
+      back={`${name} for ${book?.name} book`}
       loading={loading}
     >
       <Mui.DialogContent>

@@ -5,7 +5,7 @@ import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
 import * as Hooks from "src/app/hooks";
 import * as Pages from "src/app/pages";
-import * as API from "src/api";
+import * as Socket from "src/socket";
 import * as React from "react";
 
 export const Main = () => {
@@ -35,7 +35,7 @@ export const Main = () => {
     user?.signin
       ? notifications &&
         Object.values(notifications)?.forEach((notification) =>
-          API.Socket.socket.emit("online", notification.message.chatId)
+          Socket.socket.emit("online", notification.message.chatId)
         )
       : null;
   }, [notifications]);
