@@ -32,8 +32,9 @@ export const ProfileCard = ({
           size="small"
           endIcon={<MuiIcons.ArrowForward />}
           onClick={onClick}
+          sx={{ textTransform: "initial" }}
         >
-          seel all
+          See all
         </Mui.Button>
       )}
       {path && (
@@ -42,8 +43,9 @@ export const ProfileCard = ({
           endIcon={<MuiIcons.ArrowForward />}
           component={Router.Link}
           to={`../${path}`}
+          sx={{ textTransform: "initial" }}
         >
-          seel all
+          See all
         </Mui.Button>
       )}
     </Mui.Stack>

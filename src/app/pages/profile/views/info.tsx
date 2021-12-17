@@ -52,11 +52,14 @@ export const UserInfo = () => {
             <Mui.TableBody>
               {user &&
                 Object.entries(user)
-                  .slice(7)
+                  .slice(8)
                   .map(([key, val], index) => (
                     <Mui.TableRow key={index}>
                       <Mui.TableCell>
-                        <Mui.Typography variant="subtitle1">
+                        <Mui.Typography
+                          variant="subtitle1"
+                          sx={{ textTransform: "capitalize" }}
+                        >
                           {key}
                         </Mui.Typography>
                       </Mui.TableCell>
