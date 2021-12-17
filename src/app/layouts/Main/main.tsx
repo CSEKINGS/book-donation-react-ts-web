@@ -31,14 +31,14 @@ export const Main = () => {
     pathname
   );
 
-  user?.signin
-    ? React.useEffect(() => {
-        notifications &&
-          Object.values(notifications)?.forEach((notification) =>
-            API.Socket.socket.emit("online", notification.message.chatId)
-          );
-      }, [notifications])
-    : null;
+  React.useEffect(() => {
+    user?.signin
+      ? notifications &&
+        Object.values(notifications)?.forEach((notification) =>
+          API.Socket.socket.emit("online", notification.message.chatId)
+        )
+      : null;
+  }, [notifications]);
   // setSearch(searchRoute ? search : "");
 
   return (
