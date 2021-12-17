@@ -2,7 +2,7 @@ import * as Pages from "src/app/pages";
 import * as Hooks from "src/app/hooks";
 
 export const Sales = (props: sales.Props) => {
-  const { books, loading } = Hooks.useGetBooks(props.role);
+  const { books } = Hooks.useGetBooks(props.role);
   return (
     <Pages.Profile.Views.ProfileCard
       title="My Books"

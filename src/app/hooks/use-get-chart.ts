@@ -1,7 +1,6 @@
 import * as ChartType from "chart.js";
 import * as Hooks from "src/app/hooks";
 import * as Api from "src/api";
-import * as React from "react";
 
 export const useGetChart = (): {
   chart: ChartType.ChartData<"doughnut", number[], unknown>;

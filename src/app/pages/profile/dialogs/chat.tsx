@@ -4,7 +4,7 @@ import * as Components from "src/app/components";
 import * as Router from "react-router-dom";
 import * as Pages from "src/app/pages";
 import * as React from "react";
-import * as Socket from "src/api/socket";
+import * as API from "src/api";
 import * as Hooks from "src/app/hooks";
 
 export const Chat = () => {
@@ -25,12 +25,12 @@ export const Chat = () => {
   const { chatList, loading } = Pages.Profile.Hooks.useGetChatList();
 
   React.useEffect(() => {
-    Socket.socket.on("message-received", (msg) => setChats([...chats, msg]));
+    API.Socket.socket.on("message-received", (msg) => setChats([...chats, msg]));
   }, [chatMessage]);
 
   const handleSend = () => {
     setChatMessage("");
-    Socket.socket.emit("message-sent", {
+    API.Socket.socket.emit("message-sent", {
       chatId,
       userID: user._id,
       message: chatMessage,

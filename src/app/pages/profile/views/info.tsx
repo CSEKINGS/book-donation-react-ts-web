@@ -1,7 +1,6 @@
 import * as Mui from "@mui/material";
 import * as MuiIcons from "@mui/icons-material";
 import * as Hooks from "src/app/hooks";
-import * as React from "react";
 
 export const UserInfo = () => {
   const { customNavigate } = Hooks.useNavigate();

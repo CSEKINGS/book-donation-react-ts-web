@@ -1,6 +1,5 @@
 import * as Router from "react-router-dom";
 import * as Hooks from "src/app/hooks";
-import * as React from "react";
 
 export const Route = ({
   restrict = false,

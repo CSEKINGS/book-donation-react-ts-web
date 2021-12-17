@@ -3,7 +3,6 @@ import * as MuiIcons from "@mui/icons-material";
 import * as Router from "react-router-dom";
 import * as Constants from "src/constants";
 import * as Hooks from "src/app/hooks";
-import * as React from "react";
 
 export const Dashboard = () => {
   const [search] = Router.useSearchParams();

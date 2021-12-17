@@ -3,13 +3,15 @@ import * as MuiIcons from "@mui/icons-material";
 import * as Layouts from "src/app/layouts";
 import * as Router from "react-router-dom";
 import * as Components from "src/app/components";
-import * as React from "react";
 import * as Hooks from "src/app/hooks";
 import * as Pages from "src/app/pages";
+import * as API from "src/api";
+import * as React from "react";
 
 export const Main = () => {
   const { pathname } = Router.useLocation();
   const { user } = Hooks.useSignInCheck();
+  const { notifications } = Pages.Profile.Hooks.useGetNotifications();
 
   const landing = Router.matchPath(
     {
@@ -29,8 +31,13 @@ export const Main = () => {
     pathname
   );
 
-  const { notifications } = Pages.Profile.Hooks.useGetNotifications();
-
+  React.useEffect(() => {
+    user?.signin &&
+      notifications &&
+      Object.values(notifications)?.forEach((notification) =>
+        API.Socket.socket.emit("online", notification.message.chatId)
+      );
+  }, [notifications]);
   // setSearch(searchRoute ? search : "");
 
   return (
