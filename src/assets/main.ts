@@ -5,6 +5,7 @@ import cardImg1 from "src/assets/landing-images/899_R1IgREFOIDE0MC00OA.jpg";
 import cardImg2 from "src/assets/landing-images/1621_U1RVRElPIEtBVCAzNTYtNTg.jpg";
 import cardImg3 from "src/assets/landing-images/Book_education_10_generated.jpg";
 import BgImg from "src/assets/landing-images/564_generated.jpg";
+import Fruit from "src/assets/sounds/Fruit.ogg";
 
 export const landingImages = {
   AccountBanner:
@@ -16,4 +17,8 @@ export const landingImages = {
   cardImg2,
   cardImg3,
   BgImg,
+};
+
+export const sound = {
+  Fruit,
 };
