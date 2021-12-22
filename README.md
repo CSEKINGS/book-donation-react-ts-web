@@ -81,43 +81,91 @@ Check out current hosting here: https://bookd-web.herokuapp.com
    ```
 
 ## Screenshots
+
 <table>
 <tr><th>Description</th><th>Desktop</th><th>Mobile</th></tr>
 <tr>
 <td><h3>Signin page</h3></td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signin.png?raw=true"/>
-</td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signinM.png?raw=true"/>
-</td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signin.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signinM.png?raw=true"/></td>
 </tr>
-<tr>
 <tr>
 <td><h3>Signin page</h3></td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signup.png?raw=true"/>
-</td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signupM.png?raw=true"/>
-</td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signup.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signupM.png?raw=true"/></td>
+</tr>
+<td><h3>Dashboard</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dashboard.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dashboardM.png?raw=true"/></td>
 </tr>
 <tr>
-<td><h3>Dashboard</h3></td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dasboard.png?raw=true"/>
-</td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dashboardM.png?raw=true"/>
-</td>
+<td><h3>My Books</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/myBooks.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/myBooksM.png?raw=true"/></td>
 </tr>
 <tr>
-<td><h3>Dashboard</h3></td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dasboard.png?raw=true"/>
-</td>
-<td>
-<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dashboardM.png?raw=true"/>
-</td>
+<td><h3>My Cart</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/myCart.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/myCartM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Profile</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/profile.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/profileM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Edit Profile</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editProfile.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editProfileM.png?raw=true"/></td>
+</tr>
+<tr>
+<tr>
+<td><h3>Delete Profile</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteProfile.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteProfileM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Book Detail</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/bookDetail.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/bookDetailM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Add To Cart</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/addToCart.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/addToCartM.png?raw=true"/></td>
+</tr>
+<td><h3>Remove From Cart</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/removeCart.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/removeCartM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Buy</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/buy.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/buyM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Cancel Buy Request</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/cancelBuyRequest.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/cancelBuyRequestM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Locate</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/locate.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/locateM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Create Book</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/createBook.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/createBookM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Update Book</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/updateBook.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/updateBookM.png?raw=true"/></td>
+</tr>
+<tr>
+<td><h3>Delete Book</h3></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteBook.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteBookM.png?raw=true"/></td>
 </tr>
 </table>
