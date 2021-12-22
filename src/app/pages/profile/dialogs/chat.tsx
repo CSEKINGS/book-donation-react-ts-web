@@ -74,6 +74,7 @@ export const Chat = () => {
           sx={{ my: 1 }}
           value={chatMessage}
           onChange={(e) => setChatMessage(e.target.value)}
+          onKeyUp={(e) => e.code === "Enter" && handleSend()}
           InputProps={{
             endAdornment: (
               <Mui.InputAdornment position="end">
