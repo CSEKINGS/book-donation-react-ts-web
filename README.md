@@ -115,14 +115,14 @@ Check out current hosting here: https://bookd-web.herokuapp.com
 </tr>
 <tr>
 <td><h3>Edit Profile</h3></td>
-<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editProfile.png?raw=true"/></td>
-<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editProfileM.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editUser.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editUserM.png?raw=true"/></td>
 </tr>
 <tr>
 <tr>
 <td><h3>Delete Profile</h3></td>
-<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteProfile.png?raw=true"/></td>
-<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteProfileM.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteUser.png?raw=true"/></td>
+<td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteUserM.png?raw=true"/></td>
 </tr>
 <tr>
 <td><h3>Book Detail</h3></td>
