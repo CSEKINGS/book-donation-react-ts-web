@@ -79,3 +79,7 @@ Check out current hosting here: https://bookd-web.herokuapp.com
    ```sh
    npm run build
    ```
+
+## Screenshots
+
+<!-- ![Manual](https://github.com/CSEKINGS/book_donation_backend/blob/master/views/manual.png?raw=true) -->
