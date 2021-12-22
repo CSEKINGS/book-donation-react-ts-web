@@ -119,7 +119,6 @@ Check out current hosting here: https://bookd-web.herokuapp.com
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/editUserM.png?raw=true"/></td>
 </tr>
 <tr>
-<tr>
 <td><h3>Delete Profile</h3></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteUser.png?raw=true"/></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/deleteUserM.png?raw=true"/></td>
@@ -134,6 +133,7 @@ Check out current hosting here: https://bookd-web.herokuapp.com
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/addToCart.png?raw=true"/></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/addToCartM.png?raw=true"/></td>
 </tr>
+<tr>
 <td><h3>Remove From Cart</h3></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/removeCart.png?raw=true"/></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/removeCartM.png?raw=true"/></td>
