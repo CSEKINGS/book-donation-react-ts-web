@@ -90,7 +90,7 @@ Check out current hosting here: https://bookd-web.herokuapp.com
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signinM.png?raw=true"/></td>
 </tr>
 <tr>
-<td><h3>Signin page</h3></td>
+<td><h3>Signup page</h3></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signup.png?raw=true"/></td>
 <td><img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signupM.png?raw=true"/></td>
 </tr>
