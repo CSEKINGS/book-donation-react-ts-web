@@ -81,5 +81,43 @@ Check out current hosting here: https://bookd-web.herokuapp.com
    ```
 
 ## Screenshots
-
-<!-- ![Manual](https://github.com/CSEKINGS/book_donation_backend/blob/master/views/manual.png?raw=true) -->
+<table>
+<tr><th>Description</th><th>Desktop</th><th>Mobile</th></tr>
+<tr>
+<td><h3>Signin page</h3></td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signin.png?raw=true"/>
+</td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signinM.png?raw=true"/>
+</td>
+</tr>
+<tr>
+<tr>
+<td><h3>Signin page</h3></td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signup.png?raw=true"/>
+</td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/signupM.png?raw=true"/>
+</td>
+</tr>
+<tr>
+<td><h3>Dashboard</h3></td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dasboard.png?raw=true"/>
+</td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dashboardM.png?raw=true"/>
+</td>
+</tr>
+<tr>
+<td><h3>Dashboard</h3></td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dasboard.png?raw=true"/>
+</td>
+<td>
+<img src="https://github.com/CSEKINGS/book-donation-react-ts-web/blob/master/src/assets/screenshots/dashboardM.png?raw=true"/>
+</td>
+</tr>
+</table>
